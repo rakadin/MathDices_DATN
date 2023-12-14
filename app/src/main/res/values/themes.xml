@@ -6,6 +6,5 @@
     </style>
 
     <style name="Theme.MathDices" parent="Base.Theme.MathDices" >
-        <item name="button"
     </style>
 </resources>
