@@ -127,9 +127,9 @@ public class SoundControl extends AppCompatActivity {
         });
     }
     // roll the dice sound
-    public void RollSoundFun(Activity main)
+    public void RollSoundFun(Context context)
     {
-        rollSound = MediaPlayer.create(main,R.raw.dicerollsound);
+        rollSound = MediaPlayer.create(context,R.raw.dicerollsound);
         for (int i = 0 ; i < 10;i++)
         {
             rollSound.start();

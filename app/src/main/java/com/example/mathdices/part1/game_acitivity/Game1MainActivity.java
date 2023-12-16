@@ -1,5 +1,6 @@
 package com.example.mathdices.part1.game_acitivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -10,8 +11,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.mathdices.Gif_PopUp_Controller;
 import com.example.mathdices.R;
+import com.example.mathdices.RollDiceController;
 import com.example.mathdices.SoundControl;
+import com.example.mathdices.part1.MainActivity;
 import com.example.mathdices.part1.game_controller.GameplayGame1;
 import com.example.mathdices.part1.winning_activity.Winningactivity;
 import com.example.mathdices.utils.Utils;
@@ -20,10 +24,11 @@ import com.example.mathdices.utils.Utils;
       game 1 - eggs pick main activity
  */
 public class Game1MainActivity extends AppCompatActivity {
-    Button replayBut;
-    Button menuBut;
     GameplayGame1 gameplayGame1 = new GameplayGame1();
     public SoundControl soundControl = new SoundControl();
+    private RollDiceController rollDiceController = new RollDiceController();
+    private Gif_PopUp_Controller gif_popUp_controller = new Gif_PopUp_Controller();
+    private Dialog dialog;
     /*
     image view
      */
@@ -57,13 +62,13 @@ public class Game1MainActivity extends AppCompatActivity {
     //end egg
     ImageView imageSwitcher;
     int diceNumFinal ;
-    //    ImageView birdnest[] = {imgEgg1,imgEgg3,imgEgg4,imgEgg5,imgEgg6,imgEgg2};//get id bird nests
     int ImageSwitcherImages[] ={R.drawable.game1_pic1};// create images for img switcher
     int switcherImageLength = ImageSwitcherImages.length;//length get
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game1_main);
+        dialog = new Dialog(this);
         imageSwitcher = findViewById(R.id.imgswt);
         homeBut = findViewById(R.id.homeBut);
         onoffBut = findViewById(R.id.SonoffBut);
@@ -95,27 +100,11 @@ public class Game1MainActivity extends AppCompatActivity {
         blueEgg1 = findViewById(R.id.blueEgg1);
         blueEgg2 = findViewById(R.id.blueEgg2);
 
-        replayBut = findViewById(R.id.replayBut);
-        menuBut = findViewById(R.id.menuBut);
        // roll the dice
         diceBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int images[] = {R.drawable.dice_1,R.drawable.dice_2,R.drawable.dice_3,R.drawable.dice_4,R.drawable.dice_5,R.drawable.dice_6};
-                int sec = 1;
-                Utils.delay(sec, () -> {
-                    for (int j = 0 ; j < 7;j++){
-                        soundControl.RollSoundFun(Game1MainActivity.this);
-                        diceNumFinal = (int) (Math.random() * 6 + 1);
-                        diceBut.setImageResource(images[diceNumFinal-1]);
-                        soundControl.rollSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                            @Override
-                            public void onCompletion(MediaPlayer mediaPlayer) {
-                                mediaPlayer.release();
-                            }
-                        });
-                    }
-                });
+                diceNumFinal = rollDiceController.rollTheSixDice(diceBut, view.getContext(),dialog);
             }
         });
         // end roll
@@ -131,7 +120,7 @@ public class Game1MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    gameplayGame1.gameOn(diceNumFinal,imgViews,grEgg1,Game1MainActivity.this);
+                    gameplayGame1.gameOn(diceNumFinal,imgViews,grEgg1,Game1MainActivity.this, dialog);
                     winAcOpen();
                 }
 
@@ -146,7 +135,7 @@ public class Game1MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    gameplayGame1.gameOn(diceNumFinal,imgViews,grEgg2,Game1MainActivity.this);
+                    gameplayGame1.gameOn(diceNumFinal,imgViews,grEgg2,Game1MainActivity.this, dialog);
                     winAcOpen();
                 }
 
@@ -161,7 +150,7 @@ public class Game1MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    gameplayGame1.gameOn(diceNumFinal,imgViews,grEgg3,Game1MainActivity.this);
+                    gameplayGame1.gameOn(diceNumFinal,imgViews,grEgg3,Game1MainActivity.this, dialog);
                     winAcOpen();
                 }
 
@@ -176,7 +165,7 @@ public class Game1MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    gameplayGame1.gameOn(diceNumFinal,imgViews,grEgg4,Game1MainActivity.this);
+                    gameplayGame1.gameOn(diceNumFinal,imgViews,grEgg4,Game1MainActivity.this, dialog);
                     winAcOpen();
                 }
 
@@ -192,7 +181,7 @@ public class Game1MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    gameplayGame1.gameOn(diceNumFinal,imgViews,grEgg5,Game1MainActivity.this);
+                    gameplayGame1.gameOn(diceNumFinal,imgViews,grEgg5,Game1MainActivity.this, dialog);
                     winAcOpen();
                 }
 
@@ -207,7 +196,7 @@ public class Game1MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    gameplayGame1.gameOn(diceNumFinal,imgViews,grEgg6,Game1MainActivity.this);
+                    gameplayGame1.gameOn(diceNumFinal,imgViews,grEgg6,Game1MainActivity.this, dialog);
                     winAcOpen();
                 }
 
@@ -222,7 +211,7 @@ public class Game1MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    gameplayGame1.gameOn(diceNumFinal,imgViews,grEgg7,Game1MainActivity.this);
+                    gameplayGame1.gameOn(diceNumFinal,imgViews,grEgg7,Game1MainActivity.this, dialog);
                     winAcOpen();
                 }
 
@@ -237,7 +226,7 @@ public class Game1MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    gameplayGame1.gameOn(diceNumFinal,imgViews,redEgg1,Game1MainActivity.this);
+                    gameplayGame1.gameOn(diceNumFinal,imgViews,redEgg1,Game1MainActivity.this, dialog);
                     winAcOpen();
                 }
 
@@ -252,7 +241,7 @@ public class Game1MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    gameplayGame1.gameOn(diceNumFinal,imgViews,redEgg2,Game1MainActivity.this);
+                    gameplayGame1.gameOn(diceNumFinal,imgViews,redEgg2,Game1MainActivity.this, dialog);
                     winAcOpen();
                 }
 
@@ -267,7 +256,7 @@ public class Game1MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    gameplayGame1.gameOn(diceNumFinal,imgViews,redEgg3,Game1MainActivity.this);
+                    gameplayGame1.gameOn(diceNumFinal,imgViews,redEgg3,Game1MainActivity.this, dialog);
                     winAcOpen();
                 }
 
@@ -282,7 +271,7 @@ public class Game1MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    gameplayGame1.gameOn(diceNumFinal,imgViews,yellowEgg1,Game1MainActivity.this);
+                    gameplayGame1.gameOn(diceNumFinal,imgViews,yellowEgg1,Game1MainActivity.this, dialog);
                     winAcOpen();
                 }
 
@@ -297,7 +286,7 @@ public class Game1MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    gameplayGame1.gameOn(diceNumFinal,imgViews,yellowEgg2,Game1MainActivity.this);
+                    gameplayGame1.gameOn(diceNumFinal,imgViews,yellowEgg2,Game1MainActivity.this, dialog);
                     winAcOpen();
                 }
 
@@ -312,7 +301,7 @@ public class Game1MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    gameplayGame1.gameOn(diceNumFinal,imgViews,purEgg1,Game1MainActivity.this);
+                    gameplayGame1.gameOn(diceNumFinal,imgViews,purEgg1,Game1MainActivity.this, dialog);
                     winAcOpen();
                 }
 
@@ -327,7 +316,7 @@ public class Game1MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    gameplayGame1.gameOn(diceNumFinal,imgViews,purEgg2,Game1MainActivity.this);
+                    gameplayGame1.gameOn(diceNumFinal,imgViews,purEgg2,Game1MainActivity.this, dialog);
                     winAcOpen();
                 }
 
@@ -342,7 +331,7 @@ public class Game1MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    gameplayGame1.gameOn(diceNumFinal,imgViews,blueEgg1,Game1MainActivity.this);
+                    gameplayGame1.gameOn(diceNumFinal,imgViews,blueEgg1,Game1MainActivity.this, dialog);
                     winAcOpen();
                 }
 
@@ -357,7 +346,7 @@ public class Game1MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    gameplayGame1.gameOn(diceNumFinal,imgViews,blueEgg2,Game1MainActivity.this);
+                    gameplayGame1.gameOn(diceNumFinal,imgViews,blueEgg2,Game1MainActivity.this, dialog);
                     winAcOpen();
                 }
 
@@ -389,15 +378,18 @@ public class Game1MainActivity extends AppCompatActivity {
     }
     // if eggs get ==6 -> open winning activity
     protected  void winAcOpen(){
-        if(gameplayGame1.countEggs == 6)
-        {
-            soundControl.hooraySoundFun(Game1MainActivity.this);
-            Utils.delay(50, () -> {
-                Intent intent = new Intent();
-                intent.setClass(Game1MainActivity.this, Winningactivity.class);
-                startActivity(intent);
-            });
-        }
+        Utils.delay(60, () -> { // wait untill gif done and countEgg++
+            if(gameplayGame1.countEggs == 6)
+            {
+                soundControl.hooraySoundFun(Game1MainActivity.this);
+                Utils.delay(50, () -> {
+                    Intent intent = new Intent();
+                    intent.setClass(Game1MainActivity.this, Winningactivity.class);
+                    startActivity(intent);
+                });
+            }
+        });
+
     }
     @Override
     protected void onDestroy() {

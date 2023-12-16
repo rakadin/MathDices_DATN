@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.mathdices.R;
 import com.example.mathdices.SoundControl;
+import com.example.mathdices.part1.MainActivity;
 import com.example.mathdices.part1.winning_activity.Winning_activity_fish_catch;
 import com.example.mathdices.utils.Utils;
 
