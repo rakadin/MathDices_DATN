@@ -27,7 +27,6 @@ public class RollDiceController {
         Utils.delay(30, () -> {
             dialog.dismiss();
             diceBut.setImageResource(images[diceNumFinal-1]);
-
         });
         return diceNumFinal;
     }

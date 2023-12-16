@@ -168,7 +168,7 @@ public class SoundControl extends AppCompatActivity {
         });
     }
     // correct sound
-    public void correctSoundFun(Activity main)
+    public void correctSoundFun(Context main)
     {
         correct = MediaPlayer.create(main,R.raw.correct);
         correct.start();
