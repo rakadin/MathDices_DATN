@@ -162,4 +162,12 @@ public class Gif_PopUp_Controller {
         gifphy.setImageResource(R.drawable.flipping_card);// insert gif need
         dialog.show();
     }
+    public void show_chicken_running(Dialog dialog)
+    {
+        dialog.setContentView(R.layout.pop_up_layout_gif);
+        GifImageView gifphy ;
+        gifphy = dialog.findViewById(R.id.gif_inset);
+        gifphy.setImageResource(R.drawable.chicken_bro_gif);// insert gif need
+        dialog.show();
+    }
 }

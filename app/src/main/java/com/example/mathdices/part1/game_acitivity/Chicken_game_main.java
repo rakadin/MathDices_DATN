@@ -1,9 +1,11 @@
 package com.example.mathdices.part1.game_acitivity;
 
+import android.app.Dialog;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -13,7 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mathdices.Gif_PopUp_Controller;
 import com.example.mathdices.R;
+import com.example.mathdices.RollDiceController;
 import com.example.mathdices.SoundControl;
 import com.example.mathdices.part1.MainActivity;
 import com.example.mathdices.part1.game_controller.Chicken_game_control;
@@ -21,60 +25,124 @@ import com.example.mathdices.part1.winning_activity.Winning_activity_chicken;
 import com.example.mathdices.utils.Utils;
 
 public class Chicken_game_main extends AppCompatActivity {
-    Chicken_game_control controller = new Chicken_game_control();
-    ImageButton diceBut;
-    SoundControl soundControl = new SoundControl();
-    int diceNumFinal=0;
-    ImageButton onoffBut;
-    ImageButton homeBut;
-    Button moveBut;
-    TextView questionT;
-    int temmove = 0;
-
+    private Chicken_game_control controller = new Chicken_game_control();
+    private ImageButton diceBut;
+    private SoundControl soundControl = new SoundControl();
+    private int diceNumFinal = 0;
+    private ImageButton onoffBut;
+    private ImageButton homeBut;
+    private Button moveBut;
+    private TextView questionT;
+    private int temmove = 0;
+    private RollDiceController rollDiceController = new RollDiceController();
+    private Gif_PopUp_Controller gif_popUp_controller = new Gif_PopUp_Controller();
+    private Dialog dialog;
     // moves button
-    ImageButton move0;
-    ImageButton move1;
-    ImageButton move2;
-    ImageButton move3;
-    ImageButton move4;
-    ImageButton move5;
-    ImageButton move6;
-    ImageButton move7;
-    ImageButton move8;
-    ImageButton move9;
-    ImageButton move10;
-    ImageButton move11;
-    ImageButton move12;
-    ImageButton move13;
-    ImageButton move14;
-    ImageButton move15;
-    ImageButton move16;
-    ImageButton move17;
-    ImageButton move18;
-    ImageButton move19;
-    ImageButton move20;
-    ImageButton move21;
+    ImageButton move0, move1, move2, move3, move4, move5, move6, move7, move8, move9, move10, move11, move12,
+            move13, move14, move15, move16, move17, move18, move19, move20, move21;
     // chickens button
-    ImageButton chick1;
-    ImageButton chick2;
-    ImageButton chick3;
-    ImageButton chick4;
-    ImageButton chick5;
-    ImageButton chick6;
-    ImageButton chick7;
-    ImageButton chick8;
-    ImageButton chick9;
-    ImageButton chick10;
+    ImageButton chick1, chick2, chick3, chick4, chick5, chick6, chick7, chick8, chick9, chick10;
     // chicken get
-    ImageView get_1;
-    ImageView get_2;
-    ImageView get_3;
-    ImageView get_4;
-    ImageView get_5;
+    ImageView get_1, get_2, get_3, get_4, get_5;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chicken_game_main);
+        getIDs();
+        dialog = new Dialog(this);
+        /*
+        dice roll controll
+         */
+        diceBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                diceNumFinal = rollDiceController.rollTheSixDice(diceBut, view.getContext(), dialog);
+            }
+        });
+        /*
+        end roll
+         */
+        // sound controll but
+        soundControl.OnOffFun(Chicken_game_main.this, onoffBut);
+        // home navigate button
+        homeBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                soundControl.PopSoundFun(Chicken_game_main.this, homeBut);
+                Intent intent = new Intent();
+                intent.setClass(Chicken_game_main.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ImageButton moveButs[] = {move0, move1, move2, move3, move4, move5, move6, move7, move8, move9, move10,
+                move11, move12, move13, move14, move15, move16, move17, move18, move19, move20, move21};
+        ImageButton chickens[] = {chick1, chick2, chick3, chick4, chick5, chick6, chick7, chick8, chick9, chick10};
+        ImageView gets[] = {get_1, get_2, get_3, get_4, get_5};
+        int chick_values[] = {7, 1, 4, 2, 5, 3, 8, 6, 9, 0};
+        // animation set
+        Animation bounce = AnimationUtils.loadAnimation(Chicken_game_main.this, R.anim.bounce_animation);
+         /*
+        move button controll
+         */
+        move0.setImageResource(R.drawable.mario);
+        moveBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (diceNumFinal == 0)// make sure roll the dice first
+                {
+                    Toast.makeText(view.getContext(), "Bạn cần xúc xắc trước đã!", Toast.LENGTH_LONG).show();
+                } else {
+                    int previous = temmove;
+                    if ((temmove + diceNumFinal) == 0) {
+
+                    } else {
+                        if ((temmove + diceNumFinal) > 21) {
+                            temmove += diceNumFinal;
+                            temmove -= 21;
+                            controller.setString(questionT, temmove, moveButs, previous, Chicken_game_main.this, view.getContext());
+                        } else {
+                            temmove += diceNumFinal;
+                            controller.setString(questionT, temmove, moveButs, previous, Chicken_game_main.this, view.getContext());
+                        }
+                    }
+                }
+            }
+        });
+        /*
+        chickens clicking control
+         */
+        for (int i = 0; i < 10; i++) {
+            int temi = i;
+            chickens[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    gif_popUp_controller.show_chicken_running(dialog);
+                    Utils.delay(50, () -> {
+                        dialog.dismiss();
+                        controller.checkAns(view.getContext(), temmove, chick_values[temi], Chicken_game_main.this, chickens[temi], gets, temi);
+                        if (controller.get_count == 5) {
+                            soundControl.hooraySoundFun(Chicken_game_main.this);
+                            moveButs[temmove].startAnimation(bounce);
+                            Utils.delay(50, () -> {
+                                Intent intent = new Intent();
+                                intent.setClass(Chicken_game_main.this, Winning_activity_chicken.class);
+                                startActivity(intent);
+                            });
+                        }
+                    });
+
+                }
+            });
+        }
+    }
+
+    private void getIDs() {
         diceBut = findViewById(R.id.dice);
         onoffBut = findViewById(R.id.SonoffBut_game2);
         homeBut = findViewById(R.id.homeBut);
@@ -120,117 +188,8 @@ public class Chicken_game_main extends AppCompatActivity {
         get_3 = findViewById(R.id.get_3);
         get_4 = findViewById(R.id.get_4);
         get_5 = findViewById(R.id.get_5);
-
-        ImageButton moveButs[]={ move0,move1,move2,move3,move4,move5,move6,move7,move8,move9,move10,move11,move12,move13,move14,move15,move16,move17,move18,move19,move20,move21};
-        ImageButton chickens[] = {chick1,chick2,chick3,chick4,chick5,chick6,chick7,chick8,chick9,chick10};
-        ImageView gets[] = {get_1,get_2,get_3,get_4,get_5};
-        int chick_values[]={7,1,4,2,5,3,8,6,9,0};
-        // animation set
-        Animation bounce = AnimationUtils.loadAnimation(Chicken_game_main.this, R.anim.bounce_animation);
-        /*
-        dice roll controll
-         */
-        diceBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int images[] = {R.drawable.dice_1,R.drawable.dice_2,R.drawable.dice_3,R.drawable.dice_4,R.drawable.dice_5,R.drawable.dice_6};
-                int sec = 1;
-                for (int j = 0 ; j < 7;j++){
-                    Utils.delay(sec, () -> {
-                        soundControl.RollSoundFun(Chicken_game_main.this);
-                        diceNumFinal = (int) (Math.random() * 6 + 1);
-//                        question.setText(" "+diceNumFinal);
-                        diceBut.setImageResource(images[diceNumFinal-1]);
-                        // release roll sound
-                        soundControl.rollSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                            @Override
-                            public void onCompletion(MediaPlayer mediaPlayer) {
-                                mediaPlayer.release();
-                            }
-                        });
-                    });
-                }
-
-            }
-        });
-        /*
-        end roll
-         */
-        /*
-        move button controll
-         */
-        move0.setImageResource(R.drawable.mario);
-        moveBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(diceNumFinal ==0)// make sure roll the dice first
-                {
-                    Toast.makeText(view.getContext(),"Bạn cần xúc xắc trước đã!",Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    int previous = temmove;
-                    if((temmove+diceNumFinal)==0)
-                    {
-
-                    }
-                    else
-                    {
-                        if((temmove + diceNumFinal)>21)
-                        {
-                            temmove += diceNumFinal;
-                            temmove -= 21;
-                            controller.setString(questionT,temmove,moveButs,previous,Chicken_game_main.this,view.getContext());
-                        }
-                        else
-                        {
-                            temmove += diceNumFinal;
-                            controller.setString(questionT,temmove,moveButs,previous,Chicken_game_main.this,view.getContext());
-                        }
-                    }
-                }
-
-
-
-            }
-        });
-        /*
-        chickens clicking control
-         */
-        for(int i=0;i<10;i++)
-        {
-            int temi = i;
-            chickens[i].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    controller.checkAns(view.getContext(),temmove,chick_values[temi],Chicken_game_main.this,chickens[temi],gets,temi);
-                    if(controller.get_count == 5)
-                    {
-                       soundControl.hooraySoundFun(Chicken_game_main.this);
-                        moveButs[temmove].startAnimation(bounce);
-                        Utils.delay(50, () -> {
-                            Intent intent = new Intent();
-                            intent.setClass(Chicken_game_main.this, Winning_activity_chicken.class);
-                            startActivity(intent);
-                        });
-
-                    }
-                }
-            });
-        }
-        // sound controll but
-        soundControl.OnOffFun(Chicken_game_main.this,onoffBut);
-        // home navigate button
-        homeBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                soundControl.PopSoundFun(Chicken_game_main.this,homeBut);
-                Intent intent = new Intent();
-                intent.setClass(Chicken_game_main.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
