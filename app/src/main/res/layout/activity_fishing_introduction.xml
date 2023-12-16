@@ -34,7 +34,7 @@
         android:layout_marginEnd="75dp"
         android:autoSizeTextType="uniform"
         android:text="- Khi đến lượt, người chơi gieo 2 xúc xắc A và B để nhận được giá trị tương ứng.\n- Lấy giá trị của B trừ đi A rồi bắt chú cá có kết quả bằng giá trị nhận được. Nếu kết quả đúng, bạn sẽ bắt được một chú cá vào bể
-\n- Trò chơi kết thúc khi hái được 5 chú cá"
+\n- Trò chơi kết thúc khi bắt được 5 chú cá"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
