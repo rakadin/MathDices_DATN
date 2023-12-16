@@ -154,4 +154,12 @@ public class Gif_PopUp_Controller {
         gifphy.setImageResource(R.drawable.egg_crying_gif);// insert gif need
         dialog.show();
     }
+    public void show_flipping_card(Dialog dialog)
+    {
+        dialog.setContentView(R.layout.pop_up_layout_gif);
+        GifImageView gifphy ;
+        gifphy = dialog.findViewById(R.id.gif_inset);
+        gifphy.setImageResource(R.drawable.flipping_card);// insert gif need
+        dialog.show();
+    }
 }

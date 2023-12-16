@@ -93,50 +93,56 @@ public class Card_game_main extends AppCompatActivity {
                     }
                     else
                     {
-                        if(cards_value[tem] == diceNumFinal)
-                        {
-                            CARDS[tem].startAnimation(animation);
-                            soundControl.correctSoundFun(Card_game_main.this);
-                            soundControl.correct.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                                @Override
-                                public void onCompletion(MediaPlayer mediaPlayer) {
-                                    mediaPlayer.release();
+                        gif_popUp_controller.show_flipping_card(dialog);
+                        Utils.delay(20, () -> {
+                            dialog.dismiss();
+                            if(cards_value[tem] == diceNumFinal)
+                            {
+                                CARDS[tem].startAnimation(animation);
+                                soundControl.correctSoundFun(Card_game_main.this);
+                                soundControl.correct.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                                    @Override
+                                    public void onCompletion(MediaPlayer mediaPlayer) {
+                                        mediaPlayer.release();
+                                    }
+                                });
+                                // controll yellow and blue card to flip back
+                                if (tem % 2 == 0) {
+                                    CARDS[tem].setImageResource(R.drawable.yellow_card_back);
                                 }
-                            });
-                            // controll yellow and blue card to flip back
-                            if (tem % 2 == 0) {
-                                CARDS[tem].setImageResource(R.drawable.yellow_card_back);
+                                else
+                                {
+                                    CARDS[tem].setImageResource(R.drawable.blue_card_back);
+                                }
+                                Toast.makeText(Card_game_main.this,"Đúng rồi !!!",Toast.LENGTH_LONG).show();
+                                CARDS[tem].setClickable(false);
+                                card_cound++;
+                                // if card count == 6 -> win
+                                if(card_cound == 6)
+                                {
+                                    gif_popUp_controller.show_egg_dancing(dialog);
+                                    soundControl.hooraySoundFun(Card_game_main.this);
+                                    Utils.delay(50, () -> {
+                                        dialog.dismiss();
+                                        Intent intent = new Intent();
+                                        intent.setClass(Card_game_main.this, Winning_activity_card.class);
+                                        startActivity(intent);
+                                    });
+                                }
                             }
                             else
                             {
-                                CARDS[tem].setImageResource(R.drawable.blue_card_back);
-                            }
-                            Toast.makeText(Card_game_main.this,"Đúng rồi !!!",Toast.LENGTH_LONG).show();
-                            CARDS[tem].setClickable(false);
-                            card_cound++;
-                            // if card count == 6 -> win
-                            if(card_cound == 6)
-                            {
-                                soundControl.hooraySoundFun(Card_game_main.this);
-                                Utils.delay(50, () -> {
-                                    Intent intent = new Intent();
-                                    intent.setClass(Card_game_main.this, Winning_activity_card.class);
-                                    startActivity(intent);
+                                CARDS[tem].startAnimation(animation2);
+                                soundControl.wrongSoundFun(Card_game_main.this);
+                                Toast.makeText(Card_game_main.this,"Sai rồi !!!",Toast.LENGTH_LONG).show();
+                                soundControl.wrong.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                                    @Override
+                                    public void onCompletion(MediaPlayer mediaPlayer) {
+                                        mediaPlayer.release();
+                                    }
                                 });
                             }
-                        }
-                        else
-                        {
-                            CARDS[tem].startAnimation(animation2);
-                            soundControl.wrongSoundFun(Card_game_main.this);
-                            Toast.makeText(Card_game_main.this,"Sai rồi !!!",Toast.LENGTH_LONG).show();
-                            soundControl.wrong.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                                @Override
-                                public void onCompletion(MediaPlayer mediaPlayer) {
-                                    mediaPlayer.release();
-                                }
-                            });
-                        }
+                        });
                     }
 
                 }
