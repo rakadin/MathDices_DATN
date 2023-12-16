@@ -34,8 +34,7 @@
         android:layout_marginStart="75dp"
         android:layout_marginEnd="75dp"
         android:autoSizeTextType="uniform"
-        android:text="- Chơi theo nhóm.
-\n- Người chơi bắt đầu từ ô xuất phát. Khi đến lượt, người chơi gieo xúc xắc. Đếm số chấm ở mặt trên xúc xắc rồi chọn nút 'Di chuyển' giúp mario di chuyển số ô bằng số chấm nhận được. Chọn số bé hơn trong ô đó. Khi đến cầu thang, em chọn 'leo lên'. Khi đến cầu trượt, em 'trượt xuống'.
+        android:text="- Người chơi bắt đầu từ ô xuất phát. Khi đến lượt, người chơi gieo xúc xắc. Đếm số chấm ở mặt trên xúc xắc rồi chọn nút 'Di chuyển' giúp mario di chuyển số ô bằng số chấm nhận được.\n- Chọn số bé hơn trong 2 ô trên màn hình. Khi đến cầu thang, em chọn 'leo lên'. Khi đến cầu trượt, em 'trượt xuống'.
 \n- Trò chơi kết thúc khi có người về đến đích gặp công chúa ."
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -68,6 +67,8 @@
         app:layout_constraintWidth_percent="0.2" />
 
     <ImageButton
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
         android:background="@null"
         android:id="@+id/SonoffBut2"
         android:layout_width="0dp"

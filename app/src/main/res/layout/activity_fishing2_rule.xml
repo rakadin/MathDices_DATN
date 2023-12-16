@@ -33,8 +33,7 @@
         android:layout_marginStart="75dp"
         android:layout_marginEnd="75dp"
         android:autoSizeTextType="uniform"
-        android:text="- Chơi theo nhóm.
-\n- Người chơi bắt đầu từ ô xuất phát. Khi đến lượt, người chơi gieo xúc xắc. Đếm số chấm ở mặt trên xúc xắc rồi nhấn nút 'Di chuyển' để chú chim cánh cụt di chuyển số ô bằng số chấm nhận được.
+        android:text="- Người chơi bắt đầu từ ô xuất phát. Khi đến lượt, người chơi gieo xúc xắc. Đếm số chấm ở mặt trên xúc xắc rồi nhấn nút 'Di chuyển' để chú chim cánh cụt di chuyển số ô bằng số chấm nhận được.
 \n- Câu con cá thích hợp với số ở ô đang đứng.
 \n- Trò chơi kết thúc khi câu được hết cá."
         android:textColor="@color/black"
@@ -67,6 +66,9 @@
         app:layout_constraintWidth_percent="0.2" />
 
     <ImageButton
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+
         android:background="@null"
         android:id="@+id/SonoffBut"
         android:layout_width="0dp"

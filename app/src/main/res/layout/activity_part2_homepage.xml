@@ -12,15 +12,29 @@
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:scaleType="centerCrop"
         android:src="@drawable/app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.2"
-        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.59" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center_horizontal"
+        android:text="TẬP HAI"
+        android:textColor="#3F51B5"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gifImageView"
+        app:layout_constraintWidth_percent="0.2" />
 
     <pl.droidsonroids.gif.GifImageView
         android:layout_width="0dp"
@@ -40,15 +54,16 @@
         android:id="@+id/gifImageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.15"
-        app:layout_constraintWidth_percent="0.15"
         android:layout_marginTop="12dp"
         android:src="@drawable/spark"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHeight_percent="0.15"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toTopOf="@+id/textView"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent="0.15" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gifImageView2"
@@ -63,21 +78,18 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/gifImageView"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="1.0"
         app:layout_constraintWidth_percent="0.15" />
 
-    <Button
+    <ImageButton
         android:id="@+id/goldisland"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="44dp"
-        android:autoSizeTextType="uniform"
         android:background="@drawable/rounded_game_button"
         android:contentDescription="@string/egg"
-        android:padding="8dp"
         android:scaleType="fitCenter"
-        android:text="Đảo giấu vàng"
-        android:textStyle="bold"
+        android:src="@drawable/gold_island_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.20"
@@ -87,17 +99,14 @@
         app:layout_constraintVertical_bias="0.277"
         app:layout_constraintWidth_percent="0.25" />
 
-    <Button
+    <ImageButton
         android:id="@+id/fishing"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="44dp"
-        android:autoSizeTextType="uniform"
         android:background="@drawable/rounded_game_button"
-        android:padding="24dp"
         android:scaleType="fitCenter"
-        android:text="Câu cá"
-        android:textStyle="bold"
+        android:src="@drawable/fishing_2_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.20"
@@ -107,18 +116,15 @@
         app:layout_constraintVertical_bias="0.277"
         app:layout_constraintWidth_percent="0.25" />
 
-    <Button
+    <ImageButton
         android:id="@+id/ladder_slide"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="44dp"
-        android:autoSizeTextType="uniform"
         android:background="@drawable/rounded_game_button"
         android:contentDescription="@string/egg"
-        android:padding="12dp"
         android:scaleType="fitCenter"
-        android:text="Cầu thang cầu trượt"
-        android:textStyle="bold"
+        android:src="@drawable/slide_2_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.20"
@@ -146,7 +152,6 @@
         android:id="@+id/SonoffBut"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:background="@null"
         android:scaleType="fitCenter"
@@ -155,12 +160,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.13"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bookBut"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.008"
         app:layout_constraintWidth_percent="0.09" />
 
     <ImageButton
+        android:layout_marginLeft="8dp"
         android:id="@+id/bookBut"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -172,22 +178,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.13"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/SonoffBut"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.008"
         app:layout_constraintWidth_percent="0.09" />
 
-    <Button
+    <ImageButton
         android:id="@+id/mushroom"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:autoSizeTextType="uniform"
         android:background="@drawable/rounded_game_button"
         android:contentDescription="@string/egg"
-        android:padding="24dp"
         android:scaleType="fitCenter"
-        android:text="Hái nấm"
-        android:textStyle="bold"
+        android:src="@drawable/mushroom_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.20"
@@ -196,17 +199,14 @@
         app:layout_constraintVertical_bias="0.112"
         app:layout_constraintWidth_percent="0.25" />
 
-    <Button
+    <ImageButton
         android:id="@+id/gettoy"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:autoSizeTextType="uniform"
         android:background="@drawable/rounded_game_button"
         android:contentDescription="@string/egg"
-        android:padding="8dp"
         android:scaleType="fitCenter"
-        android:text="Lấy đồ chơi"
-        android:textStyle="bold"
+        android:src="@drawable/toy_machine_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.20"
@@ -216,17 +216,14 @@
         app:layout_constraintVertical_bias="0.112"
         app:layout_constraintWidth_percent="0.25" />
 
-    <Button
+    <ImageButton
         android:id="@+id/beehome"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:autoSizeTextType="uniform"
         android:background="@drawable/rounded_game_button"
         android:contentDescription="@string/egg"
-        android:padding="11dp"
         android:scaleType="fitCenter"
-        android:text="Đưa ong về tổ"
-        android:textStyle="bold"
+        android:src="@drawable/bee_home_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.20"
