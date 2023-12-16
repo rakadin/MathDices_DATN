@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mathdices.R;
+import com.example.mathdices.RollDiceController;
 import com.example.mathdices.SoundControl;
 import com.example.mathdices.part1.MainActivity;
 import com.example.mathdices.part1.game_controller.Slide_game_control;
@@ -26,58 +27,31 @@ import com.example.mathdices.utils.Utils;
  slide game main activity class
  */
 public class Slide_game_main extends AppCompatActivity {
-    Slide_game_control control = new Slide_game_control();
-    int temmove =0;
-    int diceNumFinal = 0;
-    int now_loc =0, previous_loc =0;
-    ImageButton onoffBut;
-    ImageButton diceBut;
-    SoundControl soundControl = new SoundControl();
-    Button moveBut,upBut,downBut;
+    private Slide_game_control control = new Slide_game_control();
+    private Gif_PopUp_Controller gif_popUp_controller = new Gif_PopUp_Controller();
+    private RollDiceController rollDiceController = new RollDiceController();
+    private Dialog dialog;
+    private int temmove =0;
+    private int diceNumFinal = 0;
+    private int now_loc =0, previous_loc =0;
+    private ImageButton onoffBut;
+    private ImageButton diceBut;
+    private SoundControl soundControl = new SoundControl();
+    private Button moveBut,upBut,downBut;
     // image character
-    ImageView img1;
-    ImageView img2;
-    ImageView img3;
-    ImageView img4;
-    ImageView img5;
-    ImageView img6;
-    ImageView img7;
-    ImageView img8;
-    ImageView img9;
-    ImageView img10;
-    ImageView img11;
-    ImageView img12;
-    ImageView img13;
-    ImageView img14;
-    ImageView img15;
-    ImageView img16;
-    ImageView img17;
-    ImageView img18;
-    ImageView img19;
-    ImageView img20;
-    ImageView img21;
-    ImageView img22;
-    ImageView img23;
-    ImageView img24;
-    ImageView img25;
-    ImageView img26;
-    ImageView img27;
-    ImageView img28;
-    ImageView img29;
-    ImageView img30;
+    private ImageView img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12,img13,img14,img15,img16;
+    private ImageView img17,img18,img19,img20,img21,img22,img23,img24,img25,img26,img27,img28,img29,img30;
 
     //create counting move
-    int move = 0;
-    TextView question;
-    TextView txtInput;
-    Gif_PopUp_Controller gif_popUp_controller = new Gif_PopUp_Controller();
-    ImageButton homebut;
+    private TextView question;// question1
+    private TextView txtInput;//question2
+    private ImageButton homebut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slide_game_main);
-        Dialog dialog = new Dialog(this);
+        dialog = new Dialog(this);
         onoffBut = findViewById(R.id.SonoffBut_game2);
         diceBut = findViewById(R.id.dice_game2);
         // questions
@@ -91,39 +65,10 @@ public class Slide_game_main extends AppCompatActivity {
         Animation animation2 = AnimationUtils.loadAnimation(this, R.anim.animation_to_right);
         Animation bounce = AnimationUtils.loadAnimation(this, R.anim.bounce_animation);
         // get image view id for character
-        img1 = findViewById(R.id.img1);
-        img2 = findViewById(R.id.img2);
-        img3 = findViewById(R.id.img3);
-        img4 = findViewById(R.id.img4);
-        img5 = findViewById(R.id.img5);
-        img6 = findViewById(R.id.img6);
-        img7 = findViewById(R.id.img7);
-        img8 = findViewById(R.id.img8);
-        img9 = findViewById(R.id.img9);
-        img10 = findViewById(R.id.img10);
-        img11 = findViewById(R.id.img11);
-        img12 = findViewById(R.id.img12);
-        img13 = findViewById(R.id.img13);
-        img14 = findViewById(R.id.img14);
-        img15 = findViewById(R.id.img15);
-        img16 = findViewById(R.id.img16);
-        img17 = findViewById(R.id.img17);
-        img18 = findViewById(R.id.img18);
-        img19 = findViewById(R.id.img19);
-        img20 = findViewById(R.id.img20);
-        img21 = findViewById(R.id.img21);
-        img22 = findViewById(R.id.img22);
-        img23 = findViewById(R.id.img23);
-        img24 = findViewById(R.id.img24);
-        img25 = findViewById(R.id.img25);
-        img26 = findViewById(R.id.img26);
-        img27 = findViewById(R.id.img27);
-        img28 = findViewById(R.id.img28);
-        img29 = findViewById(R.id.img29);
-        img30 = findViewById(R.id.img30);
-
+        getIDs();
         homebut = findViewById(R.id.homeBut);
-        ImageView table[] = {img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12,img13,img14,img15,img16,img17,img18,img19,img20,img21,img22,img23,img24,img25,img26,img27,img28,img29,img30};
+        ImageView table[] = {img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12,img13,img14,
+                img15,img16,img17,img18,img19,img20,img21,img22,img23,img24,img25,img26,img27,img28,img29,img30};
         img1.setImageResource(R.drawable.mario);
 
         // dice button controll
@@ -131,27 +76,9 @@ public class Slide_game_main extends AppCompatActivity {
         diceBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int images[] = {R.drawable.dice_1,R.drawable.dice_2,R.drawable.dice_3,R.drawable.dice_4,R.drawable.dice_5,R.drawable.dice_6};
-                int sec = 1;
-                for (int j = 0 ; j < 7;j++){
-                    Utils.delay(sec, () -> {
-                        soundControl.RollSoundFun(Slide_game_main.this);
-                        diceNumFinal = (int) (Math.random() * 6 + 1);
-                        diceBut.setImageResource(images[diceNumFinal-1]);
-                        // release roll sound
-                        soundControl.rollSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                            @Override
-                            public void onCompletion(MediaPlayer mediaPlayer) {
-                                mediaPlayer.release();
-                            }
-                        });
-                    });
-                }
-
+                diceNumFinal = rollDiceController.rollTheSixDice(diceBut,view.getContext(),dialog);
             }
-
         });
-
         // end roll
 
         // controll character movement
@@ -294,6 +221,38 @@ public class Slide_game_main extends AppCompatActivity {
                 }
             }
         });
+    }
+    private void getIDs(){
+        img1 = findViewById(R.id.img1);
+        img2 = findViewById(R.id.img2);
+        img3 = findViewById(R.id.img3);
+        img4 = findViewById(R.id.img4);
+        img5 = findViewById(R.id.img5);
+        img6 = findViewById(R.id.img6);
+        img7 = findViewById(R.id.img7);
+        img8 = findViewById(R.id.img8);
+        img9 = findViewById(R.id.img9);
+        img10 = findViewById(R.id.img10);
+        img11 = findViewById(R.id.img11);
+        img12 = findViewById(R.id.img12);
+        img13 = findViewById(R.id.img13);
+        img14 = findViewById(R.id.img14);
+        img15 = findViewById(R.id.img15);
+        img16 = findViewById(R.id.img16);
+        img17 = findViewById(R.id.img17);
+        img18 = findViewById(R.id.img18);
+        img19 = findViewById(R.id.img19);
+        img20 = findViewById(R.id.img20);
+        img21 = findViewById(R.id.img21);
+        img22 = findViewById(R.id.img22);
+        img23 = findViewById(R.id.img23);
+        img24 = findViewById(R.id.img24);
+        img25 = findViewById(R.id.img25);
+        img26 = findViewById(R.id.img26);
+        img27 = findViewById(R.id.img27);
+        img28 = findViewById(R.id.img28);
+        img29 = findViewById(R.id.img29);
+        img30 = findViewById(R.id.img30);
     }
     @Override
     protected void onDestroy() {
