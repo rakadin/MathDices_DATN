@@ -145,7 +145,7 @@
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".part1.game_acitivity.MainActivity"
+            android:name=".part1.MainActivity"
             android:exported="true"
             android:screenOrientation="landscape" />
     </application>

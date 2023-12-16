@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import com.example.mathdices.R;
 import com.example.mathdices.SoundControl;
-import com.example.mathdices.part1.game_acitivity.MainActivity;
+import com.example.mathdices.part1.MainActivity;
 import com.example.mathdices.part1.game_acitivity.Slide_game_main;
 
 public class Winning_activity_Slide extends AppCompatActivity {

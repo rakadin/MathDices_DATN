@@ -10,7 +10,7 @@ import android.widget.Button;
 import com.example.mathdices.R;
 import com.example.mathdices.SoundControl;
 import com.example.mathdices.part1.game_acitivity.Game1MainActivity;
-import com.example.mathdices.part1.game_acitivity.MainActivity;
+import com.example.mathdices.part1.MainActivity;
 
 /*
   winning archive activity -> navigate to home or play again - game 1 - eggs picking

@@ -9,7 +9,7 @@ import android.widget.Button;
 import com.example.mathdices.R;
 import com.example.mathdices.SoundControl;
 import com.example.mathdices.part1.game_acitivity.Chicken_game_main;
-import com.example.mathdices.part1.game_acitivity.MainActivity;
+import com.example.mathdices.part1.MainActivity;
 
 public class Winning_activity_chicken extends AppCompatActivity {
     Button replayBut;

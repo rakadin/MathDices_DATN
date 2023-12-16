@@ -1,5 +1,6 @@
 package com.example.mathdices.part1.game_acitivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -10,14 +11,20 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.mathdices.Gif_PopUp_Controller;
 import com.example.mathdices.R;
+import com.example.mathdices.RollDiceController;
 import com.example.mathdices.SoundControl;
+import com.example.mathdices.part1.MainActivity;
 import com.example.mathdices.part1.winning_activity.Winning_activity_card;
 import com.example.mathdices.utils.Utils;
 
 public class Card_game_main extends AppCompatActivity {
     ImageButton diceBut;
     SoundControl soundControl = new SoundControl();
+    Gif_PopUp_Controller gif_popUp_controller = new Gif_PopUp_Controller();
+    RollDiceController rollDiceController = new RollDiceController();
+    Dialog dialog;
     int diceNumFinal;
     int card_cound = 0;
     ImageButton card1;
@@ -39,6 +46,7 @@ public class Card_game_main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_game_main);
+        dialog = new Dialog(this);
         // get id
         diceBut = findViewById(R.id.dice);
         // card id
@@ -67,24 +75,7 @@ public class Card_game_main extends AppCompatActivity {
         diceBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int images[] = {R.drawable.dice_1,R.drawable.dice_2,R.drawable.dice_3,R.drawable.dice_4,R.drawable.dice_5,R.drawable.dice_6};
-                int sec = 1;
-                for (int j = 0 ; j < 7;j++){
-                    Utils.delay(sec, () -> {
-                        soundControl.RollSoundFun(Card_game_main.this);
-                        diceNumFinal = (int) (Math.random() * 6 + 1);
-//                        question.setText(" "+diceNumFinal);
-                        diceBut.setImageResource(images[diceNumFinal-1]);
-                        // release roll sound
-                        soundControl.rollSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                            @Override
-                            public void onCompletion(MediaPlayer mediaPlayer) {
-                                mediaPlayer.release();
-                            }
-                        });
-                    });
-                }
-
+                diceNumFinal = rollDiceController.rollTheSixDice(diceBut, view.getContext(), dialog);
             }
         });
         /*
@@ -121,6 +112,7 @@ public class Card_game_main extends AppCompatActivity {
                                 CARDS[tem].setImageResource(R.drawable.blue_card_back);
                             }
                             Toast.makeText(Card_game_main.this,"Đúng rồi !!!",Toast.LENGTH_LONG).show();
+                            CARDS[tem].setClickable(false);
                             card_cound++;
                             // if card count == 6 -> win
                             if(card_cound == 6)

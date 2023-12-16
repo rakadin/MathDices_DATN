@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.example.mathdices.R;
 import com.example.mathdices.SoundControl;
 import com.example.mathdices.part2.Part2_Homepage_Activity;
-import com.example.mathdices.part2.game_controller.Gif_PopUp_Controller;
+import com.example.mathdices.Gif_PopUp_Controller;
 import com.example.mathdices.part2.game_controller.GoldIsland_Controller;
 import com.example.mathdices.part2.winning_activity.Winning_activity_golden_island;
 import com.example.mathdices.utils.Utils;
