@@ -33,8 +33,7 @@
         android:layout_marginStart="75dp"
         android:layout_marginEnd="75dp"
         android:autoSizeTextType="uniform"
-        android:text="- Chơi theo nhóm.
-\n- Khi đến lượt, người chơi gieo 2 xúc xắc A và B để nhận được giá trị tương ứng. Lấy giá trị của B trừ đi A rồi bắt chú cá có kết quả bằng giá trị nhận được. Nếu kết quả đúng, bạn sẽ bắt được một chú cá vào bể
+        android:text="- Khi đến lượt, người chơi gieo 2 xúc xắc A và B để nhận được giá trị tương ứng.\n- Lấy giá trị của B trừ đi A rồi bắt chú cá có kết quả bằng giá trị nhận được. Nếu kết quả đúng, bạn sẽ bắt được một chú cá vào bể
 \n- Trò chơi kết thúc khi hái được 5 chú cá"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -66,11 +65,12 @@
         app:layout_constraintWidth_percent="0.2" />
 
     <ImageButton
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
         android:id="@+id/SonoffBut2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
         android:background="@null"
         android:scaleType="fitCenter"
         android:src="@drawable/sound_on"

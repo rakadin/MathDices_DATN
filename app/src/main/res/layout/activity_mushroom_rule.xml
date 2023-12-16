@@ -34,8 +34,7 @@
         android:layout_marginEnd="75dp"
         android:padding="10dp"
         android:autoSizeTextType="uniform"
-        android:text="- Chơi theo nhóm.
-\n- Khi đến lượt, người chơi gieo xúc xắc để nhận được một số ở mặt trên xúc xắc. Hái cây nấm ghi phép tính có kết quả bằng số nhận được.
+        android:text="- Khi đến lượt, người chơi gieo xúc xắc để nhận được một số ở mặt trên xúc xắc.\n- Hái cây nấm ghi phép tính có kết quả bằng số nhận được.
 \n- Trò chơi kết thúc khi hái được 4 cây nấm"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"

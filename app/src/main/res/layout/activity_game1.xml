@@ -34,8 +34,7 @@
         android:layout_marginStart="75dp"
         android:layout_marginEnd="75dp"
         android:autoSizeTextType="uniform"
-        android:text="- Chơi theo nhóm.
-\n- Khi đến lượt, người chơi gieo xúc xắc rồi đếm giá trị của mặt xúc xắc đó. Tiếp theo chọn một quả trứng trong bảng được bao quanh bởi giá trị của xúc xắc. Nếu kết quả đúng, bạn sẽ nhặt được một quả trứng
+        android:text="- Khi đến lượt, người chơi gieo xúc xắc rồi đếm giá trị của mặt xúc xắc đó.\n- Tiếp theo chọn một quả trứng trong bảng mà được bao quanh bởi giá trị của xúc xắc. Nếu kết quả đúng, bạn sẽ nhặt được một quả trứng
 \n- Trò chơi kết thúc khi bạn nhặt được 6 quả trứng"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -67,11 +66,12 @@
         app:layout_constraintWidth_percent="0.2" />
 
     <ImageButton
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
         android:id="@+id/SonoffBut"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
         android:background="@null"
         android:scaleType="fitCenter"
         android:src="@drawable/sound_on"

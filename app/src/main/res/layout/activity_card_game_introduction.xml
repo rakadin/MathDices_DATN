@@ -33,8 +33,7 @@
         android:layout_marginStart="75dp"
         android:layout_marginEnd="75dp"
         android:autoSizeTextType="uniform"
-        android:text="- Chơi theo nhóm.
-\n- Khi đến lượt, người chơi gieo xúc xắc rồi đếm giá trị của mặt xúc xắc đó. Tiếp theo chọn một tấm thẻ có giá trị phép toán trên tấm thẻ bằng giá trị của xúc xắc. Nếu kết quả đúng, bạn sẽ lật được tấm thẻ đó
+        android:text="- Khi đến lượt, người chơi gieo xúc xắc rồi đếm giá trị của mặt xúc xắc đó.\n- Tiếp theo chọn một tấm thẻ có giá trị phép toán trên tấm thẻ bằng giá trị của xúc xắc. Nếu kết quả đúng, bạn sẽ lật được tấm thẻ đó
 \n- Trò chơi kết thúc khi bạn lật được 6 tấm thẻ"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -71,7 +70,9 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+
         android:background="@null"
         android:scaleType="fitCenter"
         android:src="@drawable/sound_on"

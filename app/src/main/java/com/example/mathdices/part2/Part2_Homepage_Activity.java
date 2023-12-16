@@ -22,7 +22,7 @@ import com.example.mathdices.part2.game_rules.Toy_Machine_rule;
 public class Part2_Homepage_Activity extends AppCompatActivity {
     SoundControl soundControl = new SoundControl();
     ImageButton soundbut,bookBut;
-    Button  goldisland,fishing,ladder_slide,mushroom,gettoy,beehome;
+    ImageButton  goldisland,fishing,ladder_slide,mushroom,gettoy,beehome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

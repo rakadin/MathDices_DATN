@@ -33,8 +33,7 @@
         android:layout_marginStart="75dp"
         android:layout_marginEnd="75dp"
         android:autoSizeTextType="uniform"
-        android:text="- Chơi theo nhóm.
-\n-Người chơi bắt đầu từ ô xuất phát. Khi đến lượt, người chơi gieo xúc xắc. Đếm số chấm ở mặt trên xúc xắc rồi nhấn nút 'Di chuyển' giúp chú ong di chuyển số ô bằng số chấm đó. Đọc giờ tại đồng hồ đi đến. Nếu đến được ô may mắn thì chú ong được về tổ ngay.
+        android:text="-Người chơi bắt đầu từ ô xuất phát. Khi đến lượt, người chơi gieo xúc xắc. Đếm số chấm ở mặt trên xúc xắc rồi nhấn nút 'Di chuyển' giúp chú ong di chuyển số ô bằng số chấm đó.\n- Chọn đáp án giống cách đọc số giờ tại đồng hồ. Nếu đến được ô may mắn thì chú ong được về tổ ngay.
 \n- Trò chơi kết thúc khi đưa được ong về tổ"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,7 +41,7 @@
         app:layout_constraintHeight_percent="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.195"
+        app:layout_constraintVertical_bias="0.176"
         app:layout_constraintWidth_percent="0.8" />
 
     <Button
@@ -68,6 +67,9 @@
     <ImageButton
         android:background="@null"
         android:id="@+id/SonoffBut"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="fitCenter"

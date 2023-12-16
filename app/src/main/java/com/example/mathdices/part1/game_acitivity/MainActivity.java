@@ -18,9 +18,7 @@ import com.example.mathdices.part1.game_rules.Fishing_introduction;
 import com.example.mathdices.part1.game_rules.Slide_introduction;
 
 /*
-
  home activity that navigate to 5 games
-
  */
 public class MainActivity extends AppCompatActivity {
     SoundControl soundControl = new SoundControl();
@@ -36,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         soundControl.vali = true;
         setContentView(R.layout.activity_main);
-        onoffBut = findViewById(R.id.SonoffBut);
+        onoffBut = findViewById(R.id.book1_sOnOffBut);
         game1But = findViewById(R.id.eggcatch);
         game2But = findViewById(R.id.slide);
         game3But = findViewById(R.id.fishcatch);
