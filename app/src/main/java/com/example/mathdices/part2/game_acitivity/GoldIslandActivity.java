@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mathdices.R;
+import com.example.mathdices.RollDiceController;
 import com.example.mathdices.SoundControl;
 import com.example.mathdices.part2.Part2_Homepage_Activity;
 import com.example.mathdices.Gif_PopUp_Controller;
@@ -25,19 +26,20 @@ import com.example.mathdices.utils.Utils;
 import pl.droidsonroids.gif.GifImageView;
 
 public class GoldIslandActivity extends AppCompatActivity {
-    GoldIsland_Controller goldIsland_controller = new GoldIsland_Controller();
-    SoundControl soundControl = new SoundControl();
-    ImageButton soundBut,homeBut,diceBut;
-    GifImageView ship_gif,chest_gif;
-    TextView num_now;
-    Dialog dialog ;
-    Gif_PopUp_Controller gif_popUp_controller = new Gif_PopUp_Controller();// call controller
-    int diceNumFinal = 0;
-    int now_loc =0, previous_loc =0;
-    Button loc_1,loc_2,loc_3,loc_4,loc_5,loc_6,loc_7,loc_8,loc_9,loc_10,loc_11,loc_12,loc_13,loc_14,loc_15,loc_16,loc_17,loc_18,loc_19,loc_20,
+    private GoldIsland_Controller goldIsland_controller = new GoldIsland_Controller();
+    private SoundControl soundControl = new SoundControl();
+    private RollDiceController rollDiceController = new RollDiceController();
+    private ImageButton soundBut,homeBut,diceBut;
+    private GifImageView ship_gif,chest_gif;
+    private TextView num_now;
+    private Dialog dialog ;
+    private Gif_PopUp_Controller gif_popUp_controller = new Gif_PopUp_Controller();// call controller
+    private int diceNumFinal = 0;
+    private int now_loc =0, previous_loc =0;
+    private Button loc_1,loc_2,loc_3,loc_4,loc_5,loc_6,loc_7,loc_8,loc_9,loc_10,loc_11,loc_12,loc_13,loc_14,loc_15,loc_16,loc_17,loc_18,loc_19,loc_20,
             loc_21,loc_22,loc_23,loc_24,loc_25,loc_26,loc_27,loc_28,loc_29,loc_30,
             loc_31,loc_32,loc_33,loc_34,loc_35,loc_36,loc_37,loc_38,loc_39;
-    Button moveBut;
+    private Button moveBut;
 
 
     @Override
@@ -84,6 +86,7 @@ public class GoldIslandActivity extends AppCompatActivity {
                     }
                     else
                     {
+                        Boolean flag = false;
                         Animation animation3 = AnimationUtils.loadAnimation(view.getContext(), R.anim.ship_go_down_right);
                         Animation animation4 = AnimationUtils.loadAnimation(view.getContext(), R.anim.ship_go_up_right);
                         Animation animation5 = AnimationUtils.loadAnimation(view.getContext(), R.anim.ship_go_up_right_2);
@@ -101,59 +104,80 @@ public class GoldIslandActivity extends AppCompatActivity {
                                 startActivity(intent);
                             });
 
-                        }
-                        if(now_loc == 5)
-                        {
-                            now_loc = 13;
-                            Utils.delay(55, () -> {
-                                multiShip[now_loc-1].setAnimation(animation4);
-                            });
-
-                        }
-                        if(now_loc == 16)
-                        {
-                            now_loc = 27;
-                            Utils.delay(55, () -> {
-                                multiShip[now_loc-1].setAnimation(animation5);
-                            });
-                        }
-                        if(now_loc == 19)
-                        {
-                            now_loc = 3;
-                            Utils.delay(55, () -> {
-                                multiShip[now_loc-1].setAnimation(animation3);
-                            });
-                        }
-                        if(now_loc == 25)
-                        {
-                            now_loc = 36;
-                            Utils.delay(55, () -> {
-                                multiShip[now_loc-1].setAnimation(animation4);
-                            });
-                        }
-                        soundControl.sailingSoundFunc(view.getContext());
-                        gif_popUp_controller.show_ship_sailing(dialog);
-                        Utils.delay(55, () -> {
-                            soundControl.fall.release();
-                            if(now_loc <39)
-                            { // dismiss dialog after few secs when location <39
-                                dialog.dismiss();
-                            }
-                            multiShip[now_loc-1].setBackgroundResource(R.drawable.pirate_ship);
-                            goldIsland_controller.show_num(num_now,now_loc+1);//show location number
-                            if(previous_loc>0)
+                        }else {
+                            if(now_loc == 5)
                             {
-                                multiShip[previous_loc-1].setBackgroundResource(0);
+                                flag = true;
+                                now_loc = 13;
+                                Utils.delay(55, () -> {
+                                    multiShip[now_loc-1].setAnimation(animation4);
+                                });
+
                             }
-                        });
+                            if(now_loc == 16)
+                            {
+                                flag = true;
+                                now_loc = 27;
+                                Utils.delay(55, () -> {
+                                    multiShip[now_loc-1].setAnimation(animation5);
+                                });
+                            }
+                            if(now_loc == 19)
+                            {
+                                flag = true;
+                                now_loc = 3;
+                                Utils.delay(55, () -> {
+                                    multiShip[now_loc-1].setAnimation(animation3);
+                                });
+                            }
+                            if(now_loc == 25)
+                            {
+                                flag = true;
+                                now_loc = 36;
+                                Utils.delay(55, () -> {
+                                    multiShip[now_loc-1].setAnimation(animation4);
+                                });
+                            }
+                            soundControl.sailingSoundFunc(view.getContext());
+                            gif_popUp_controller.show_ship_sailing(dialog);
+                            Boolean finalFlag = flag;
+                            Utils.delay(55, () -> {
+                                soundControl.fall.release();
+                                if(now_loc <39)
+                                { // dismiss dialog after few secs when location <39
+                                    dialog.dismiss();
+                                }
+                                multiShip[now_loc-1].setBackgroundResource(R.drawable.pirate_ship);
+                                goldIsland_controller.show_num(num_now,now_loc+1);//show location number
+
+                                if(finalFlag == true){
+                                    diceBut.setClickable(false);// wait till animation complete
+                                    moveBut.setClickable(false);
+                                    // handle if ship go into specific case, wait till animation complete
+                                    Utils.delay(75, () -> {
+                                        diceBut.setClickable(true);// wait till animation complete
+                                        moveBut.setClickable(true);
+                                        Dialog dialog2 = new Dialog(view.getContext());
+                                        goldIsland_controller.showQuestion(dialog2,now_loc+1);
+                                    });
+                                } else {
+                                    Dialog dialog2 = new Dialog(view.getContext());
+                                    goldIsland_controller.showQuestion(dialog2,now_loc+1);
+                                }
+
+                                if(previous_loc>0)
+                                {
+                                    multiShip[previous_loc-1].setBackgroundResource(0);
+                                }
+                            });
+                        }
+
                     }
                 }
 
 
             }
         });
-
-
     }
     // home button func
     void setHomeBut()
@@ -168,30 +192,17 @@ public class GoldIslandActivity extends AppCompatActivity {
         });
     }
     // roll the dicefunc
-    int rollDice()
+    private void rollDice()
     {
         // dice button controll
         // roll the dice
         diceBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int images[] = {R.drawable.dice_1,R.drawable.dice_2,R.drawable.dice_3,R.drawable.dice_4,R.drawable.dice_5,R.drawable.dice_6};
-                int sec = 1;
-                for (int j = 0 ; j < 7;j++){
-                    Utils.delay(sec, () -> {
-                        soundControl.RollSoundFun(GoldIslandActivity.this);
-                        diceNumFinal = (int) (Math.random() * 6 + 1);
-                        diceBut.setImageResource(images[diceNumFinal-1]);
-                    });
-                }
-
+                diceNumFinal = rollDiceController.rollTheSixDice(diceBut, view.getContext(), dialog);
             }
-
         });
-
         // end roll
-        return diceNumFinal;
-
     }
     void getShipBut()
     {
