@@ -49,7 +49,7 @@ public class Choose_part_activity extends AppCompatActivity {
     private void activateMagicBookGif(Dialog dialog, Intent intent){
         Gif_PopUp_Controller gif_popUp_controller = new Gif_PopUp_Controller();
         gif_popUp_controller.show_magic_book(dialog);
-        Utils.delay(60, () -> {
+        Utils.delay(45, () -> {
             dialog.dismiss();
             startActivity(intent);
         });
