@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mathdices.R;
+import com.example.mathdices.RollDiceController;
 import com.example.mathdices.SoundControl;
 import com.example.mathdices.part2.Part2_Homepage_Activity;
 import com.example.mathdices.part2.game_controller.Bee_Home_Controller;
@@ -26,17 +27,18 @@ import pl.droidsonroids.gif.GifImageView;
 
 
 public class BeeHomeActivity extends AppCompatActivity {
-    SoundControl soundControl = new SoundControl();
-    ImageButton soundBut,homeBut,diceBut;
-    Dialog dialog ;
-    Bee_Home_Controller controller = new Bee_Home_Controller();
-    Gif_PopUp_Controller gif_popUp_controller = new Gif_PopUp_Controller();// call controller
-    int diceNumFinal = 0;
-    int now_loc =0, previous_loc =0;
-    Button moveBut,getHBut;
-    GifImageView clock_1,clock_2,clock_3,clock_4,clock_5,clock_6,clock_7,clock_8,clock_9,clock_10,
+    private SoundControl soundControl = new SoundControl();
+    private ImageButton soundBut,homeBut,diceBut;
+    private Dialog dialog ;
+    private Bee_Home_Controller controller = new Bee_Home_Controller();
+    private Gif_PopUp_Controller gif_popUp_controller = new Gif_PopUp_Controller();// call controller
+    private RollDiceController rollDiceController = new RollDiceController();
+    private int diceNumFinal = 0;
+    private int now_loc =0, previous_loc =0;
+    private Button moveBut,getHBut;
+    private GifImageView clock_1,clock_2,clock_3,clock_4,clock_5,clock_6,clock_7,clock_8,clock_9,clock_10,
             clock_11,clock_12,clock_13,clock_14,clock_15;
-    ImageView clock_now;
+    private ImageView clock_now;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,12 +84,15 @@ public class BeeHomeActivity extends AppCompatActivity {
                         soundControl.beeSoundFunc(view.getContext());
                         gif_popUp_controller.show_bee_yeah(dialog);
                         Utils.delay(50, () -> {
+                            Boolean flag = false;
                             soundControl.fall.release();
                             dialog.dismiss();
                             clocks[now_loc-1].setImageResource(R.drawable.bee_gif);
                             controller.getIMG(now_loc-1,clock_now);
+                            Dialog questionDialog = new Dialog(view.getContext());
                             if(now_loc == 15)
                             {
+                                flag = true;
                                 gif_popUp_controller.show_bee_home(dialog);
                                 soundControl.hooraySoundFun2(view.getContext());
                                 Utils.delay(50, () -> {
@@ -96,9 +101,14 @@ public class BeeHomeActivity extends AppCompatActivity {
                             }
                             if(now_loc == 11 || now_loc == 7)
                             {
+                                flag = true;
                                 moveBut.setVisibility(View.GONE);
                                 getHBut.setVisibility(View.VISIBLE);
                                 HButFunc();
+                            }
+
+                            if(flag != true){ // go home -> no question dialog
+                                controller.getClockQuestion(now_loc-1, questionDialog);
                             }
                         });
 
@@ -168,16 +178,7 @@ public class BeeHomeActivity extends AppCompatActivity {
         diceBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int images[] = {R.drawable.dice_1,R.drawable.dice_2,R.drawable.dice_3,R.drawable.dice_4,R.drawable.dice_5,R.drawable.dice_6};
-                int sec = 1;
-                for (int j = 0 ; j < 7;j++){
-                    Utils.delay(sec, () -> {
-                        soundControl.RollSoundFun(BeeHomeActivity.this);
-                        diceNumFinal = (int) (Math.random() * 6 + 1);
-                        diceBut.setImageResource(images[diceNumFinal-1]);
-                    });
-                }
-
+                diceNumFinal = rollDiceController.rollTheSixDice(diceBut, view.getContext(), dialog);
             }
 
         });
