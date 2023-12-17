@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mathdices.R;
+import com.example.mathdices.RollDiceController;
 import com.example.mathdices.SoundControl;
 import com.example.mathdices.part2.Part2_Homepage_Activity;
 import com.example.mathdices.part2.game_controller.Fishing_2_Controller;
@@ -22,22 +23,22 @@ import com.example.mathdices.part2.winning_activity.Winning_activity_fishing_2;
 import com.example.mathdices.utils.Utils;
 
 public class Fishing_2_Activity extends AppCompatActivity {
-    ImageButton soundBut,homeBut,diceBut;
-    Button moveBut;
-    TextView ans;
-    Gif_PopUp_Controller gif_popUp_controller = new Gif_PopUp_Controller();
-    SoundControl soundControl = new SoundControl();
-    Fishing_2_Controller fishing_2_controller = new Fishing_2_Controller();
-    int diceNumFinal =0;
-    int now_loc = 0; // now location
-    int previous =0;// previous location
-    int now_number =0;
-    int count =0;
-    static final int fish_num[] = {42,93,76,14,58};
-    Dialog dialog;
-    ImageButton move_0,move_1,move_2,move_3,move_4,move_5,move_6,move_7,move_8,move_9,
+    private ImageButton soundBut,homeBut,diceBut;
+    private Button moveBut;
+    private TextView ans;
+    private Gif_PopUp_Controller gif_popUp_controller = new Gif_PopUp_Controller();
+    private SoundControl soundControl = new SoundControl();
+    private Fishing_2_Controller fishing_2_controller = new Fishing_2_Controller();
+    private int diceNumFinal =0;
+    private int now_loc = 0; // now location
+    private int previous =0;// previous location
+    private int now_number =0;
+    private int count =0;
+    private static final int fish_num[] = {42,93,76,14,58};
+    private Dialog dialog;
+    private ImageButton move_0,move_1,move_2,move_3,move_4,move_5,move_6,move_7,move_8,move_9,
             move_10,move_11,move_12,move_13,move_14,move_15;
-    ImageButton fish_42,fish_93,fish_76,fish_14,fish_58;
+    private ImageButton fish_42,fish_93,fish_76,fish_14,fish_58;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,21 +142,12 @@ public class Fishing_2_Activity extends AppCompatActivity {
     {
         // dice button controll
         // roll the dice
+        RollDiceController rollDiceController = new RollDiceController();
         diceBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int images[] = {R.drawable.dice_1,R.drawable.dice_2,R.drawable.dice_3,R.drawable.dice_4,R.drawable.dice_5,R.drawable.dice_6};
-                int sec = 1;
-                for (int j = 0 ; j < 7;j++){
-                    Utils.delay(sec, () -> {
-                        soundControl.RollSoundFun(Fishing_2_Activity.this);
-                        diceNumFinal = (int) (Math.random() * 6 + 1);
-                        diceBut.setImageResource(images[diceNumFinal-1]);
-                    });
-                }
-
+                diceNumFinal = rollDiceController.rollTheSixDice(diceBut, view.getContext(), dialog);
             }
-
         });
 
         // end roll
