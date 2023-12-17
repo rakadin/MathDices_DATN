@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mathdices.R;
+import com.example.mathdices.RollDiceController;
 import com.example.mathdices.SoundControl;
 import com.example.mathdices.part2.Part2_Homepage_Activity;
 import com.example.mathdices.Gif_PopUp_Controller;
@@ -26,18 +27,17 @@ import com.example.mathdices.utils.Utils;
 import pl.droidsonroids.gif.GifImageView;
 
 public class Toy_Machine_Activity extends AppCompatActivity {
-    ImageButton soundBut,homeBut,diceBut;
-    Button mathBut;
-    TextView question;
-    GifImageView claw;
-    Gif_PopUp_Controller gif_popUp_controller = new Gif_PopUp_Controller();
-    SoundControl soundControl = new SoundControl();
-    Toy_Machine_Controller controller = new Toy_Machine_Controller();
-    int diceNumFinal =0;
-    int count =0;
-    Dialog dialog;
-    ImageButton toy_1,toy_2,toy_3,toy_4,toy_5,toy_6,toy_7,toy_8,toy_9,toy_10,toy_11,toy_12;
-    int ans =0;
+    private ImageButton soundBut,homeBut,diceBut;
+    private TextView question;
+    private GifImageView claw;
+    private Gif_PopUp_Controller gif_popUp_controller = new Gif_PopUp_Controller();
+    private SoundControl soundControl = new SoundControl();
+    private Toy_Machine_Controller controller = new Toy_Machine_Controller();
+    private int diceNumFinal =0;
+    private int count =0;
+    private Dialog dialog;
+    private ImageButton toy_1,toy_2,toy_3,toy_4,toy_5,toy_6,toy_7,toy_8,toy_9,toy_10,toy_11,toy_12;
+    private int ans =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,11 +47,34 @@ public class Toy_Machine_Activity extends AppCompatActivity {
         homeBut = findViewById(R.id.homeBut);
         diceBut = findViewById(R.id.dice);
         claw = findViewById(R.id.claw_gif);
-        mathBut = findViewById(R.id.mathBut);
         question = findViewById(R.id.questionText);
         Animation animation_claw = AnimationUtils.loadAnimation(this, R.anim.animation_claw);
         claw.setAnimation(animation_claw);
         getToyID();
+        setHomeBut();
+        rollDice();
+        // set sound but func
+        soundControl.OnOffFun(Toy_Machine_Activity.this,soundBut);
+    }
+    void getToyID()
+    {
+        toy_1 = findViewById(R.id.toy_1);
+        toy_2 = findViewById(R.id.toy_2);
+        toy_3 = findViewById(R.id.toy_3);
+        toy_4 = findViewById(R.id.toy_4);
+        toy_5 = findViewById(R.id.toy_5);
+        toy_6 = findViewById(R.id.toy_6);
+        toy_7 = findViewById(R.id.toy_7);
+        toy_8 = findViewById(R.id.toy_8);
+        toy_9 = findViewById(R.id.toy_9);
+        toy_10 = findViewById(R.id.toy_10);
+        toy_11 = findViewById(R.id.toy_11);
+        toy_12 = findViewById(R.id.toy_12);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         ImageButton toys[] ={ toy_1,toy_2,toy_3,toy_4,toy_5,toy_6,toy_7,toy_8,toy_9,toy_10,toy_11,toy_12};
         ImageButton toys2[] ={ toy_1,toy_2,toy_3,toy_4,toy_5,toy_6,toy_7,toy_8,toy_9,toy_10,toy_11,toy_12};
         // clicking toys
@@ -103,56 +126,16 @@ public class Toy_Machine_Activity extends AppCompatActivity {
                             }
                         });
                     }
-
-
                 }
             });
         }
-        setHomeBut();
-        rollDice();
-        setMathBut();
-        // set sound but func
-        soundControl.OnOffFun(Toy_Machine_Activity.this,soundBut);
     }
-    void getToyID()
-    {
-        toy_1 = findViewById(R.id.toy_1);
-        toy_2 = findViewById(R.id.toy_2);
-        toy_3 = findViewById(R.id.toy_3);
-        toy_4 = findViewById(R.id.toy_4);
-        toy_5 = findViewById(R.id.toy_5);
-        toy_6 = findViewById(R.id.toy_6);
-        toy_7 = findViewById(R.id.toy_7);
-        toy_8 = findViewById(R.id.toy_8);
-        toy_9 = findViewById(R.id.toy_9);
-        toy_10 = findViewById(R.id.toy_10);
-        toy_11 = findViewById(R.id.toy_11);
-        toy_12 = findViewById(R.id.toy_12);
-    }
+
     void winner()
     {
         Intent intent = new Intent();
         intent.setClass(Toy_Machine_Activity.this, Winning_activity_toy_machine.class);
         startActivity(intent);
-    }
-    //math but func
-    void setMathBut()
-    {
-        mathBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(diceNumFinal ==0)// make sure roll the dice first
-                {
-                    Toast.makeText(view.getContext(),"Bạn cần xúc xắc trước đã!",Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    question.setText("49-"+diceNumFinal);
-                    ans = 49-diceNumFinal;
-                }
-
-            }
-        });
     }
     // home button func
     void setHomeBut()
@@ -174,18 +157,13 @@ public class Toy_Machine_Activity extends AppCompatActivity {
         diceBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int images[] = {R.drawable.dice_1,R.drawable.dice_2,R.drawable.dice_3,R.drawable.dice_4,R.drawable.dice_5,R.drawable.dice_6};
-                int sec = 1;
-                for (int j = 0 ; j < 7;j++){
-                    Utils.delay(sec, () -> {
-                        soundControl.RollSoundFun(Toy_Machine_Activity.this);
-                        diceNumFinal = (int) (Math.random() * 6 + 1);
-                        diceBut.setImageResource(images[diceNumFinal-1]);
-                    });
-                }
-
+                RollDiceController rollDiceController = new RollDiceController();
+                diceNumFinal = rollDiceController.rollTheSixDice(diceBut, view.getContext(), dialog);
+                Utils.delay(30, () -> {
+                    question.setText("49-"+diceNumFinal);
+                    ans = 49-diceNumFinal;
+                });
             }
-
         });
 
         // end roll
