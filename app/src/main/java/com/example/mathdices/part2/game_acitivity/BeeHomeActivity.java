@@ -14,14 +14,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mathdices.ArchivementController;
 import com.example.mathdices.R;
 import com.example.mathdices.RollDiceController;
+import com.example.mathdices.ShPrefEnum;
 import com.example.mathdices.SoundControl;
 import com.example.mathdices.part2.Part2_Homepage_Activity;
 import com.example.mathdices.part2.game_controller.Bee_Home_Controller;
 import com.example.mathdices.Gif_PopUp_Controller;
 import com.example.mathdices.part2.winning_activity.Winning_activity_bee_home;
 import com.example.mathdices.utils.Utils;
+
+import java.util.Calendar;
 
 import pl.droidsonroids.gif.GifImageView;
 
@@ -39,10 +43,12 @@ public class BeeHomeActivity extends AppCompatActivity {
     private GifImageView clock_1,clock_2,clock_3,clock_4,clock_5,clock_6,clock_7,clock_8,clock_9,clock_10,
             clock_11,clock_12,clock_13,clock_14,clock_15;
     private ImageView clock_now;
+    private Calendar start;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bee_home);
+        start = Calendar.getInstance();
         dialog = new Dialog(BeeHomeActivity.this);// dialog
         // get idS
         soundBut = findViewById(R.id.SonoffBut);
@@ -135,6 +141,12 @@ public class BeeHomeActivity extends AppCompatActivity {
     }
     void winner(Context context)
     {
+        Calendar target = Calendar.getInstance();
+        ArchivementController controller = new ArchivementController();
+        ShPrefEnum shPrefEnum = new ShPrefEnum();
+        controller.setNewTimeValueGOT(start,target,this, shPrefEnum.beeGameGOT);
+        controller.setNewGOH(shPrefEnum.beeGameGOH, this);
+
         Intent intent = new Intent();
         intent.setClass(context, Winning_activity_bee_home.class);
         startActivity(intent);
@@ -193,6 +205,7 @@ public class BeeHomeActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         soundBut.setImageResource(sound_on);
+        start = Calendar.getInstance();
         soundControl.player.start();
     }
     // if destroy stop music

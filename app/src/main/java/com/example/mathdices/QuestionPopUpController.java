@@ -57,7 +57,7 @@ public class QuestionPopUpController {
         checkClickAns(ans3, questionIn.getCorrect(), dialog);
         checkClickAns(ans4, questionIn.getCorrect(), dialog);
     }
-    private void checkClickAns(TextView textView, String correctAns, Dialog dialog) {
+    private void checkClickAns(TextView textView, String  correctAns, Dialog dialog) {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

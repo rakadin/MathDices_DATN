@@ -68,7 +68,6 @@ public class Winningactivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        soundControl.win.stop();
         soundControl.win.release();
     }
 

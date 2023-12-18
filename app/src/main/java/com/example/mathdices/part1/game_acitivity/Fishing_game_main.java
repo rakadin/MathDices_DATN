@@ -15,14 +15,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mathdices.ArchivementController;
 import com.example.mathdices.Gif_PopUp_Controller;
 import com.example.mathdices.R;
 import com.example.mathdices.RollDiceController;
+import com.example.mathdices.ShPrefEnum;
 import com.example.mathdices.SoundControl;
 import com.example.mathdices.part1.MainActivity;
 import com.example.mathdices.part1.game_controller.Fishing_game1_control;
 import com.example.mathdices.part1.winning_activity.Winning_activity_fish_catch;
 import com.example.mathdices.utils.Utils;
+
+import java.util.Calendar;
 
 /*
 fishing game main activity
@@ -49,11 +53,14 @@ public class Fishing_game_main extends AppCompatActivity {
     private Gif_PopUp_Controller gif_popUp_controller = new Gif_PopUp_Controller();
     private Dialog dialog;
     private Fishing_game1_control fishingGame1Control = new Fishing_game1_control();
+    private Calendar start;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fishing_game_main);
+        start = Calendar.getInstance();
         dialog = new Dialog(this);
         //get id
         getIDs();
@@ -131,6 +138,11 @@ public class Fishing_game_main extends AppCompatActivity {
                             soundControl.correctSoundFun(Fishing_game_main.this);
                             fishSum++;
                             if (fishSum == 5) {
+                                Calendar target = Calendar.getInstance();
+                                ArchivementController controller = new ArchivementController();
+                                ShPrefEnum shPrefEnum = new ShPrefEnum();
+                                controller.setNewTimeValueGOT(start,target,view.getContext(), shPrefEnum.fishGameGOT);
+                                controller.setNewGOH(shPrefEnum.fishGameGOH, view.getContext());
                                 gif_popUp_controller.show_egg_dancing(dialog);
                                 soundControl.hooraySoundFun(Fishing_game_main.this);
                                 Utils.delay(50, () -> {
@@ -197,6 +209,7 @@ public class Fishing_game_main extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
+        start = Calendar.getInstance();
         soundControl.player.start();
     }
 

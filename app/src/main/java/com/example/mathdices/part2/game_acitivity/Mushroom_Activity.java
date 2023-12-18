@@ -14,14 +14,18 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.mathdices.ArchivementController;
 import com.example.mathdices.R;
 import com.example.mathdices.RollDiceController;
+import com.example.mathdices.ShPrefEnum;
 import com.example.mathdices.SoundControl;
 import com.example.mathdices.part2.Part2_Homepage_Activity;
 import com.example.mathdices.Gif_PopUp_Controller;
 import com.example.mathdices.part2.game_controller.Mushroom_Controller;
 import com.example.mathdices.part2.winning_activity.Winning_activity_mushroom;
 import com.example.mathdices.utils.Utils;
+
+import java.util.Calendar;
 
 public class Mushroom_Activity extends AppCompatActivity {
     private ImageButton soundBut, homeBut, diceBut;
@@ -32,12 +36,12 @@ public class Mushroom_Activity extends AppCompatActivity {
     private int count = 0;
     private Dialog dialog;
     private ImageButton move_0, move_1, move_2, move_3, move_4, move_5;
-
+    private Calendar start;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mushroom);
-
+        start = Calendar.getInstance();
         dialog = new Dialog(Mushroom_Activity.this);
 
         soundBut = findViewById(R.id.SonoffBut);
@@ -103,6 +107,12 @@ public class Mushroom_Activity extends AppCompatActivity {
     void winning(Context context, Dialog dialog)// check and open winning
     {
         if (count == 4) {
+            Calendar target = Calendar.getInstance();
+            ArchivementController controller = new ArchivementController();
+            ShPrefEnum shPrefEnum = new ShPrefEnum();
+            controller.setNewTimeValueGOT(start,target,this, shPrefEnum.mushroomGameGOT);
+            controller.setNewGOH(shPrefEnum.mushroomGameGOH, this);
+
             soundControl.hooraySoundFun2(context);
             gif_popUp_controller.show_mushroom_yeah(dialog);
             Utils.delay(80, () -> {
@@ -160,6 +170,7 @@ public class Mushroom_Activity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         soundBut.setImageResource(sound_on);
+        start = Calendar.getInstance();
         soundControl.player.start();
     }
 

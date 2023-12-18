@@ -2,6 +2,7 @@ package com.example.mathdices.part1;
 
 import static com.example.mathdices.R.drawable.*;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -9,10 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.example.mathdices.ArchivementController;
 import com.example.mathdices.Choose_part_activity;
 import com.example.mathdices.R;
 import com.example.mathdices.SoundControl;
-import com.example.mathdices.part1.game_acitivity.Game1;
+import com.example.mathdices.part1.game_rules.Game1;
 import com.example.mathdices.part1.game_rules.Card_game_introduction;
 import com.example.mathdices.part1.game_rules.Chicken_game_introduction;
 import com.example.mathdices.part1.game_rules.Fishing_introduction;
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton game2But;
     ImageButton game3But;
     ImageButton game4But;
-    ImageButton game5But,bookBut;
+    ImageButton game5But,bookBut, archivementBut;
    public boolean vali = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         game4But = findViewById(R.id.chicken);
         game5But = findViewById(R.id.cardch);
         bookBut = findViewById(R.id.bookBut);
+        archivementBut = findViewById(R.id.ArchivementBut);
         // choose book
         bookBut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,7 +136,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         soundControl.OnOffFun(MainActivity.this,onoffBut);
-
+        openArchivement();
+    }
+    private void openArchivement(){
+        archivementBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Dialog archivementDialog = new Dialog(view.getContext());
+                ArchivementController controller = new ArchivementController();
+                controller.activateArchivementDialog(archivementDialog, view.getContext());
+            }
+        });
     }
 // if restart set activity again
     @Override

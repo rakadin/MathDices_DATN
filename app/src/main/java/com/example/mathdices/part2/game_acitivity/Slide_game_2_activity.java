@@ -1,5 +1,7 @@
 package com.example.mathdices.part2.game_acitivity;
 
+import static com.example.mathdices.R.drawable.sound_on;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -16,14 +18,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mathdices.ArchivementController;
 import com.example.mathdices.R;
 import com.example.mathdices.RollDiceController;
+import com.example.mathdices.ShPrefEnum;
 import com.example.mathdices.SoundControl;
 import com.example.mathdices.part2.Part2_Homepage_Activity;
 import com.example.mathdices.Gif_PopUp_Controller;
 import com.example.mathdices.part2.game_controller.Slide_game2_controller;
 import com.example.mathdices.part2.winning_activity.Winning_activity_slide_2;
 import com.example.mathdices.utils.Utils;
+
+import java.util.Calendar;
 
 /*
  slide game main activity class
@@ -48,12 +54,13 @@ public class Slide_game_2_activity extends AppCompatActivity {
     private RollDiceController rollDiceController = new RollDiceController();
     private ImageButton homebut;
     private Dialog dialog;
-
+    private Calendar start;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slide2_game);
+        start = Calendar.getInstance();
         dialog = new Dialog(this);
 
         getIDs();
@@ -115,6 +122,12 @@ public class Slide_game_2_activity extends AppCompatActivity {
                         previous_loc = temmove;
                     } else if (temmove == 29) // wwin the game
                     {
+                        Calendar target = Calendar.getInstance();
+                        ArchivementController controller = new ArchivementController();
+                        ShPrefEnum shPrefEnum = new ShPrefEnum();
+                        controller.setNewTimeValueGOT(start,target,view.getContext(), shPrefEnum.slideGameGOT);
+                        controller.setNewGOH(shPrefEnum.slideGameGOH, view.getContext());
+
                         table[previous_loc].setImageResource(0);
                         table[temmove].setImageResource(R.drawable.mario2);
                         table[temmove].startAnimation(animation2);
@@ -282,6 +295,8 @@ public class Slide_game_2_activity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
+        onoffBut.setImageResource(sound_on);
+        start = Calendar.getInstance();
         soundControl.player.start();
     }
 

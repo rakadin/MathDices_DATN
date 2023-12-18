@@ -5,20 +5,27 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.mathdices.ArchivementController;
 import com.example.mathdices.Gif_PopUp_Controller;
 import com.example.mathdices.R;
 import com.example.mathdices.RollDiceController;
+import com.example.mathdices.ShPrefEnum;
+import com.example.mathdices.SharedPrefManager;
 import com.example.mathdices.SoundControl;
 import com.example.mathdices.part1.MainActivity;
 import com.example.mathdices.part1.game_controller.GameplayGame1;
 import com.example.mathdices.part1.winning_activity.Winningactivity;
 import com.example.mathdices.utils.Utils;
+
+import java.util.Calendar;
 
 /*
       game 1 - eggs pick main activity
@@ -32,42 +39,23 @@ public class Game1MainActivity extends AppCompatActivity {
     /*
     image view
      */
-    ImageView imgEgg1;
-    ImageView imgEgg2;
-    ImageView imgEgg3;
-    ImageView imgEgg4;
-    ImageView imgEgg5;
-    ImageView imgEgg6;
+    private ImageView imgEgg1,imgEgg2,imgEgg3,imgEgg4,imgEgg5,imgEgg6;
     //
-    ImageButton homeBut;
-    ImageButton onoffBut;
-    ImageButton diceBut;
+    private ImageButton homeBut,onoffBut,diceBut;
     //* button
-    Button grEgg1;
-    Button grEgg2;
-    Button grEgg3;
-    Button grEgg4;
-    Button grEgg5;
-    Button grEgg6;
-    Button grEgg7;
-    Button redEgg1;
-    Button redEgg2;
-    Button redEgg3;
-    Button yellowEgg1;
-    Button yellowEgg2;
-    Button purEgg1;
-    Button purEgg2;
-    Button blueEgg1;
-    Button blueEgg2;
+    private Button grEgg1,grEgg2,grEgg3,grEgg4,grEgg5,grEgg6,grEgg7,redEgg1,redEgg2,redEgg3,yellowEgg1;
+    private Button yellowEgg2,purEgg1,purEgg2,blueEgg1,blueEgg2;
     //end egg
-    ImageView imageSwitcher;
-    int diceNumFinal ;
-    int ImageSwitcherImages[] ={R.drawable.game1_pic1};// create images for img switcher
-    int switcherImageLength = ImageSwitcherImages.length;//length get
+    private ImageView imageSwitcher;
+    private int diceNumFinal ;
+    private int ImageSwitcherImages[] ={R.drawable.game1_pic1};// create images for img switcher
+    private int switcherImageLength = ImageSwitcherImages.length;//length get
+    private Calendar start;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game1_main);
+        start = Calendar.getInstance();
         dialog = new Dialog(this);
         imageSwitcher = findViewById(R.id.imgswt);
         homeBut = findViewById(R.id.homeBut);
@@ -381,6 +369,12 @@ public class Game1MainActivity extends AppCompatActivity {
         Utils.delay(60, () -> { // wait untill gif done and countEgg++
             if(gameplayGame1.countEggs == 6)
             {
+                Calendar target = Calendar.getInstance();
+                ArchivementController controller = new ArchivementController();
+                ShPrefEnum shPrefEnum = new ShPrefEnum();
+                controller.setNewTimeValueGOT(start,target,this, shPrefEnum.eggGameGOT);
+                controller.setNewGOH(shPrefEnum.eggGameGOH, this);
+
                 soundControl.hooraySoundFun(Game1MainActivity.this);
                 Utils.delay(50, () -> {
                     Intent intent = new Intent();
@@ -389,8 +383,13 @@ public class Game1MainActivity extends AppCompatActivity {
                 });
             }
         });
-
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -400,6 +399,7 @@ public class Game1MainActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
+        start = Calendar.getInstance();
         soundControl.player.start();
     }
 

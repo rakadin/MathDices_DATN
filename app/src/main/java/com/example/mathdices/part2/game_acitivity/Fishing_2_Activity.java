@@ -13,14 +13,18 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mathdices.ArchivementController;
 import com.example.mathdices.R;
 import com.example.mathdices.RollDiceController;
+import com.example.mathdices.ShPrefEnum;
 import com.example.mathdices.SoundControl;
 import com.example.mathdices.part2.Part2_Homepage_Activity;
 import com.example.mathdices.part2.game_controller.Fishing_2_Controller;
 import com.example.mathdices.Gif_PopUp_Controller;
 import com.example.mathdices.part2.winning_activity.Winning_activity_fishing_2;
 import com.example.mathdices.utils.Utils;
+
+import java.util.Calendar;
 
 public class Fishing_2_Activity extends AppCompatActivity {
     private ImageButton soundBut,homeBut,diceBut;
@@ -34,16 +38,17 @@ public class Fishing_2_Activity extends AppCompatActivity {
     private int previous =0;// previous location
     private int now_number =0;
     private int count =0;
-    private static final int fish_num[] = {42,93,76,14,58};
+    int fish_num[] = {42,93,76,14,58};
     private Dialog dialog;
     private ImageButton move_0,move_1,move_2,move_3,move_4,move_5,move_6,move_7,move_8,move_9,
             move_10,move_11,move_12,move_13,move_14,move_15;
     private ImageButton fish_42,fish_93,fish_76,fish_14,fish_58;
+    private Calendar start;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fishing2);
-
+        start = Calendar.getInstance();
         dialog = new Dialog(Fishing_2_Activity.this);
 
         soundBut = findViewById(R.id.SonoffBut);
@@ -101,6 +106,12 @@ public class Fishing_2_Activity extends AppCompatActivity {
                 count +=1; // increase fish catched
                 if(count == 5)
                 {
+                    Calendar target = Calendar.getInstance();
+                    ArchivementController controller = new ArchivementController();
+                    ShPrefEnum shPrefEnum = new ShPrefEnum();
+                    controller.setNewTimeValueGOT(start,target,this, shPrefEnum.fishGameGOT);
+                    controller.setNewGOH(shPrefEnum.fishGameGOH, this);
+
                     Intent intent = new Intent();
                     intent.setClass(context, Winning_activity_fishing_2.class);
                     startActivity(intent);
@@ -219,6 +230,7 @@ public class Fishing_2_Activity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         soundBut.setImageResource(sound_on);
+        start = Calendar.getInstance();
         soundControl.player.start();
     }
     // if destroy stop music
