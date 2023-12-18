@@ -1,4 +1,4 @@
-package com.example.mathdices.part1.game_acitivity;
+package com.example.mathdices.part1.game_rules;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 
 import com.example.mathdices.R;
 import com.example.mathdices.SoundControl;
+import com.example.mathdices.part1.game_acitivity.Game1MainActivity;
 
 /*
 game 1 - egg pick introduction

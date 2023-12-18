@@ -2,6 +2,7 @@ package com.example.mathdices.part2;
 
 import static com.example.mathdices.R.drawable.sound_on;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.mathdices.ArchivementController;
 import com.example.mathdices.Choose_part_activity;
 import com.example.mathdices.R;
 import com.example.mathdices.SoundControl;
@@ -23,6 +25,7 @@ public class Part2_Homepage_Activity extends AppCompatActivity {
     SoundControl soundControl = new SoundControl();
     ImageButton soundbut,bookBut;
     ImageButton  goldisland,fishing,ladder_slide,mushroom,gettoy,beehome;
+    ImageButton archivement;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +39,7 @@ public class Part2_Homepage_Activity extends AppCompatActivity {
         gettoy = findViewById(R.id.gettoy);
         beehome = findViewById(R.id.beehome);
         bookBut = findViewById(R.id.bookBut);
-
+        archivement = findViewById(R.id.ArchivementBut);
         // get on click button funcs
         goldisland.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,9 +99,18 @@ public class Part2_Homepage_Activity extends AppCompatActivity {
         });
         // function
         soundControl.OnOffFun(Part2_Homepage_Activity.this,soundbut);
-
+        openArchivement();
     }
-
+    private void openArchivement(){
+        archivement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Dialog archivementDialog = new Dialog(view.getContext());
+                ArchivementController controller = new ArchivementController();
+                controller.activateArchivementDialog(archivementDialog, view.getContext());
+            }
+        });
+    }
     // if restart set activity again
     @Override
     protected void onRestart() {

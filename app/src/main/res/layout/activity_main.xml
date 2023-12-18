@@ -10,20 +10,21 @@
 
 
     <ImageView
-       android:src="@drawable/app_name"
-        android:scaleType="centerCrop"
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.2"
-        app:layout_constraintWidth_percent="0.59"
         android:layout_marginBottom="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/app_name"
         app:layout_constraintBottom_toTopOf="@+id/chicken"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.186" />
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent="0.59" />
+
     <TextView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -90,9 +91,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/slide"
         app:layout_constraintHeight_percent="0.45"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toEndOf="@+id/fishcatch"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.505"
+        app:layout_constraintVertical_bias="0.461"
         app:layout_constraintWidth_percent="0.21"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -110,7 +112,7 @@
         app:layout_constraintHorizontal_bias="0.121"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.322"
+        app:layout_constraintVertical_bias="0.294"
         app:layout_constraintWidth_percent="0.30" />
 
     <ImageButton
@@ -156,10 +158,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.20"
-        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintHorizontal_bias="0.876"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.322"
+        app:layout_constraintVertical_bias="0.294"
         app:layout_constraintWidth_percent="0.30" />
 
     <pl.droidsonroids.gif.GifImageView
@@ -201,29 +203,46 @@
         android:src="@drawable/sound_on"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.1"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/bookBut"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.01"
-        app:layout_constraintWidth_percent="0.07"
+        app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintWidth_percent="0.09"
         tools:ignore="ImageContrastCheck,SpeakableTextPresentCheck" />
+    <ImageButton
+        android:id="@+id/ArchivementBut"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        android:src="@drawable/archivement_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintWidth_percent="0.09"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookBut"
+        app:layout_constraintVertical_bias="0.0"
+        />
 
     <ImageButton
-        android:layout_marginLeft="16dp"
         android:id="@+id/bookBut"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="5dp"
         android:background="@null"
         android:scaleType="fitCenter"
         android:src="@drawable/book"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintHeight_percent="0.13"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.01"
-        app:layout_constraintWidth_percent="0.07" />
+        app:layout_constraintVertical_bias="0.011"
+        app:layout_constraintWidth_percent="0.09" />
 </androidx.constraintlayout.widget.ConstraintLayout>

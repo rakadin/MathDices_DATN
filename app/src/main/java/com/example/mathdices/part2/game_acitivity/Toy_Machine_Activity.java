@@ -15,14 +15,18 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mathdices.ArchivementController;
 import com.example.mathdices.R;
 import com.example.mathdices.RollDiceController;
+import com.example.mathdices.ShPrefEnum;
 import com.example.mathdices.SoundControl;
 import com.example.mathdices.part2.Part2_Homepage_Activity;
 import com.example.mathdices.Gif_PopUp_Controller;
 import com.example.mathdices.part2.game_controller.Toy_Machine_Controller;
 import com.example.mathdices.part2.winning_activity.Winning_activity_toy_machine;
 import com.example.mathdices.utils.Utils;
+
+import java.util.Calendar;
 
 import pl.droidsonroids.gif.GifImageView;
 
@@ -38,10 +42,12 @@ public class Toy_Machine_Activity extends AppCompatActivity {
     private Dialog dialog;
     private ImageButton toy_1,toy_2,toy_3,toy_4,toy_5,toy_6,toy_7,toy_8,toy_9,toy_10,toy_11,toy_12;
     private int ans =0;
+    private Calendar start;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ativity_toy_machine);
+        start = Calendar.getInstance();
         dialog = new Dialog(Toy_Machine_Activity.this);
         soundBut = findViewById(R.id.SonoffBut);
         homeBut = findViewById(R.id.homeBut);
@@ -133,6 +139,11 @@ public class Toy_Machine_Activity extends AppCompatActivity {
 
     void winner()
     {
+        Calendar target = Calendar.getInstance();
+        ArchivementController controller = new ArchivementController();
+        ShPrefEnum shPrefEnum = new ShPrefEnum();
+        controller.setNewTimeValueGOT(start,target,this, shPrefEnum.toyGameGOT);
+        controller.setNewGOH(shPrefEnum.toyGameGOH, this);
         Intent intent = new Intent();
         intent.setClass(Toy_Machine_Activity.this, Winning_activity_toy_machine.class);
         startActivity(intent);
@@ -175,6 +186,7 @@ public class Toy_Machine_Activity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         soundBut.setImageResource(sound_on);
+        start = Calendar.getInstance();
         soundControl.player.start();
     }
     // if destroy stop music

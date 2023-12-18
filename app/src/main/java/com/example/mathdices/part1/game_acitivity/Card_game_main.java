@@ -11,13 +11,17 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.mathdices.ArchivementController;
 import com.example.mathdices.Gif_PopUp_Controller;
 import com.example.mathdices.R;
 import com.example.mathdices.RollDiceController;
+import com.example.mathdices.ShPrefEnum;
 import com.example.mathdices.SoundControl;
 import com.example.mathdices.part1.MainActivity;
 import com.example.mathdices.part1.winning_activity.Winning_activity_card;
 import com.example.mathdices.utils.Utils;
+
+import java.util.Calendar;
 
 public class Card_game_main extends AppCompatActivity {
     ImageButton diceBut;
@@ -42,10 +46,12 @@ public class Card_game_main extends AppCompatActivity {
 
     ImageButton onoffBut;
     ImageButton homeBut;
+    private Calendar start;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_game_main);
+        start = Calendar.getInstance();
         dialog = new Dialog(this);
         // get id
         diceBut = findViewById(R.id.dice);
@@ -120,6 +126,11 @@ public class Card_game_main extends AppCompatActivity {
                                 // if card count == 6 -> win
                                 if(card_cound == 6)
                                 {
+                                    Calendar target = Calendar.getInstance();
+                                    ArchivementController controller = new ArchivementController();
+                                    ShPrefEnum shPrefEnum = new ShPrefEnum();
+                                    controller.setNewTimeValueGOT(start,target,view.getContext(), shPrefEnum.cardGameGOT);
+                                    controller.setNewGOH(shPrefEnum.cardGameGOH, view.getContext());
                                     gif_popUp_controller.show_egg_dancing(dialog);
                                     soundControl.hooraySoundFun(Card_game_main.this);
                                     Utils.delay(50, () -> {
@@ -170,6 +181,7 @@ public class Card_game_main extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
+        start = Calendar.getInstance();
         soundControl.player.start();
     }
 

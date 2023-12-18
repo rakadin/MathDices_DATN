@@ -14,14 +14,18 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mathdices.ArchivementController;
 import com.example.mathdices.R;
 import com.example.mathdices.RollDiceController;
+import com.example.mathdices.ShPrefEnum;
 import com.example.mathdices.SoundControl;
 import com.example.mathdices.part2.Part2_Homepage_Activity;
 import com.example.mathdices.Gif_PopUp_Controller;
 import com.example.mathdices.part2.game_controller.GoldIsland_Controller;
 import com.example.mathdices.part2.winning_activity.Winning_activity_golden_island;
 import com.example.mathdices.utils.Utils;
+
+import java.util.Calendar;
 
 import pl.droidsonroids.gif.GifImageView;
 
@@ -40,6 +44,7 @@ public class GoldIslandActivity extends AppCompatActivity {
             loc_21,loc_22,loc_23,loc_24,loc_25,loc_26,loc_27,loc_28,loc_29,loc_30,
             loc_31,loc_32,loc_33,loc_34,loc_35,loc_36,loc_37,loc_38,loc_39;
     private Button moveBut;
+    private Calendar start;
 
 
     @Override
@@ -47,6 +52,7 @@ public class GoldIslandActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gold_island);
         dialog = new Dialog(GoldIslandActivity.this);// dialog
+        start = Calendar.getInstance();
         // get idS
         soundBut = findViewById(R.id.SonoffBut);
         homeBut = findViewById(R.id.homeBut);
@@ -92,6 +98,11 @@ public class GoldIslandActivity extends AppCompatActivity {
                         Animation animation5 = AnimationUtils.loadAnimation(view.getContext(), R.anim.ship_go_up_right_2);
                         if(now_loc == 39)//go to island
                         {
+                            Calendar target = Calendar.getInstance();
+                            ArchivementController controller = new ArchivementController();
+                            ShPrefEnum shPrefEnum = new ShPrefEnum();
+                            controller.setNewTimeValueGOT(start,target,view.getContext(), shPrefEnum.goldIslandGameGOT);
+                            controller.setNewGOH(shPrefEnum.goldIslandGameGOH, view.getContext());
 
                             Utils.delay(55, () -> {
                                 soundControl.hooraySoundFun(GoldIslandActivity.this);
@@ -252,6 +263,7 @@ public class GoldIslandActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         soundBut.setImageResource(sound_on);
+        start = Calendar.getInstance();
         soundControl.player.start();
     }
     // if destroy stop music

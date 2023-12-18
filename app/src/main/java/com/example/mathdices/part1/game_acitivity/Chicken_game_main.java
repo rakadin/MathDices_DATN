@@ -15,14 +15,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mathdices.ArchivementController;
 import com.example.mathdices.Gif_PopUp_Controller;
 import com.example.mathdices.R;
 import com.example.mathdices.RollDiceController;
+import com.example.mathdices.ShPrefEnum;
 import com.example.mathdices.SoundControl;
 import com.example.mathdices.part1.MainActivity;
 import com.example.mathdices.part1.game_controller.Chicken_game_control;
 import com.example.mathdices.part1.winning_activity.Winning_activity_chicken;
 import com.example.mathdices.utils.Utils;
+
+import java.util.Calendar;
 
 public class Chicken_game_main extends AppCompatActivity {
     private Chicken_game_control controller = new Chicken_game_control();
@@ -37,6 +41,7 @@ public class Chicken_game_main extends AppCompatActivity {
     private RollDiceController rollDiceController = new RollDiceController();
     private Gif_PopUp_Controller gif_popUp_controller = new Gif_PopUp_Controller();
     private Dialog dialog;
+    private Calendar start;
     // moves button
     ImageButton move0, move1, move2, move3, move4, move5, move6, move7, move8, move9, move10, move11, move12,
             move13, move14, move15, move16, move17, move18, move19, move20, move21;
@@ -49,6 +54,7 @@ public class Chicken_game_main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chicken_game_main);
+        start = Calendar.getInstance();
         getIDs();
         dialog = new Dialog(this);
         /*
@@ -105,10 +111,10 @@ public class Chicken_game_main extends AppCompatActivity {
                         if ((temmove + diceNumFinal) > 21) {
                             temmove += diceNumFinal;
                             temmove -= 21;
-                            controller.setString(questionT, temmove, moveButs, previous, Chicken_game_main.this, view.getContext());
+                            controller.setString (questionT, temmove, moveButs, previous, Chicken_game_main.this, view.getContext());
                         } else {
                             temmove += diceNumFinal;
-                            controller.setString(questionT, temmove, moveButs, previous, Chicken_game_main.this, view.getContext());
+                            controller.setString (questionT, temmove, moveButs, previous, Chicken_game_main.this, view.getContext());
                         }
                     }
                 }
@@ -129,6 +135,11 @@ public class Chicken_game_main extends AppCompatActivity {
                         if (controller.get_count == 5) {
                             soundControl.hooraySoundFun(Chicken_game_main.this);
                             moveButs[temmove].startAnimation(bounce);
+                            Calendar target = Calendar.getInstance();
+                            ArchivementController controller = new ArchivementController();
+                            ShPrefEnum shPrefEnum = new ShPrefEnum();
+                            controller.setNewTimeValueGOT(start,target,view.getContext(), shPrefEnum.chickenGameGOT);
+                            controller.setNewGOH(shPrefEnum.chickenGameGOH, view.getContext());
                             Utils.delay(50, () -> {
                                 Intent intent = new Intent();
                                 intent.setClass(Chicken_game_main.this, Winning_activity_chicken.class);
@@ -199,6 +210,7 @@ public class Chicken_game_main extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
+        start = Calendar.getInstance();
         soundControl.player.start();
     }
 

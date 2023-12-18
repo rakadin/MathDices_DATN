@@ -6,9 +6,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/icongame"
+        android:label="Math Dices"
+        android:roundIcon="@drawable/icongame"
         android:supportsRtl="true"
         android:theme="@style/Theme.MathDices"
         tools:targetApi="31">
@@ -141,7 +141,7 @@
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".part1.game_acitivity.Game1"
+            android:name=".part1.game_rules.Game1"
             android:exported="false"
             android:screenOrientation="landscape" />
         <activity

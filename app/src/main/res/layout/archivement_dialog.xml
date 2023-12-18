@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:background="@drawable/archivement_gradient_background"
+    >
+
+    <Button
+        android:id="@+id/archivementButOff"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
+        android:autoSizeTextType="uniform"
+        android:background="#F32D2D"
+        android:text="X"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.05" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="THÀNH TÍCH"
+        android:textColor="#2196F3"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:autoSizeTextType="uniform"
+        android:paddingLeft="16dp"
+        android:text="Vua thời gian⏰(Chiến thắng nhanh nhất)"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintHorizontal_bias="0.007"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent="0.5" />
+
+    <ImageView
+        android:background="@drawable/gradient_background"
+        android:id="@+id/imageView5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/fish_got"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <TextView
+        android:id="@+id/fishGameGOT"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="10 phút"
+        android:textColor="@color/black"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <ImageView
+        android:background="@drawable/gradient_background"
+        android:layout_marginLeft="8dp"
+        android:id="@+id/imageView6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/egg_got"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <TextView
+        android:layout_marginLeft="8dp"
+        android:id="@+id/eggGameGOT"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="10 phút"
+        android:textColor="@color/black"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toEndOf="@+id/fishGameGOT"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <ImageView
+        android:background="@drawable/gradient_background"
+        android:layout_marginLeft="8dp"
+        android:id="@+id/imageView7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/slide_got"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <TextView
+        android:layout_marginLeft="8dp"
+        android:id="@+id/slideGameGOT"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="10 phút"
+        android:textColor="@color/black"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toEndOf="@+id/eggGameGOT"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <ImageView
+        android:background="@drawable/gradient_background"
+        android:layout_marginLeft="8dp"
+        android:id="@+id/imageView8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/chicken_got"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <TextView
+        android:layout_marginLeft="8dp"
+        android:id="@+id/chickenGameGOT"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="10 phút"
+        android:textColor="@color/black"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toEndOf="@+id/slideGameGOT"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <ImageView
+        android:background="@drawable/gradient_background"
+        android:layout_marginLeft="8dp"
+        android:id="@+id/imageView9"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/card_got"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <TextView
+        android:layout_marginLeft="8dp"
+        android:id="@+id/cardGameGOT"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="10 phút"
+        android:textColor="@color/black"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toEndOf="@+id/chickenGameGOT"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <ImageView
+        android:background="@drawable/gradient_background"
+        android:layout_marginLeft="8dp"
+        android:id="@+id/imageView10"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/gold_island_got"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/imageView9"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <TextView
+        android:layout_marginLeft="8dp"
+        android:id="@+id/goldIslandGameGOT"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="10 phút"
+        android:textColor="@color/black"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toEndOf="@+id/cardGameGOT"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <ImageView
+        android:background="@drawable/gradient_background"
+        android:layout_marginLeft="8dp"
+        android:id="@+id/imageView11"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/toy_got"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/imageView10"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <TextView
+        android:layout_marginLeft="8dp"
+        android:id="@+id/toyGameGOT"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="10 phút"
+        android:textColor="@color/black"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toEndOf="@+id/goldIslandGameGOT"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <ImageView
+        android:background="@drawable/gradient_background"
+        android:layout_marginLeft="8dp"
+        android:id="@+id/imageView12"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/mushroom_got"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/imageView11"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <TextView
+        android:layout_marginLeft="8dp"
+        android:id="@+id/mushroomGameGOT"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="10 phút"
+        android:textColor="@color/black"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toEndOf="@+id/toyGameGOT"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <ImageView
+        android:background="@drawable/gradient_background"
+        android:layout_marginLeft="8dp"
+        android:id="@+id/imageView13"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/bee_got"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/imageView12"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <TextView
+        android:layout_marginLeft="8dp"
+        android:id="@+id/beeGameGOT"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="10 phút"
+        android:textColor="@color/black"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toEndOf="@+id/mushroomGameGOT"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <TextView
+        android:layout_marginTop="16dp"
+        android:id="@+id/text1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:autoSizeTextType="uniform"
+        android:paddingLeft="16dp"
+        android:text="Thần đồng chăm chỉ🔥(Số lần đã chơi)"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fishGameGOT"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent="0.5" />
+
+    <ImageView
+        android:background="@drawable/gradient_background_game2"
+        android:id="@+id/image1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="36dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/fish_goh"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text1"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <TextView
+        android:id="@+id/fishGameGOH"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="10 phút"
+        android:textColor="@color/black"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/image1"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <ImageView
+        android:background="@drawable/gradient_background_game2"
+        android:id="@+id/imagg6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/egg_goh"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/text1"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <TextView
+        android:id="@+id/eggGameGOH"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="10 phút"
+        android:textColor="@color/black"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toEndOf="@+id/fishGameGOT"
+        app:layout_constraintTop_toBottomOf="@+id/imagg6"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <ImageView
+        android:background="@drawable/gradient_background_game2"
+        android:id="@+id/image7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/slide_goh"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:layout_constraintTop_toBottomOf="@+id/text1"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <TextView
+        android:id="@+id/slideGameGOH"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="10 phút"
+        android:textColor="@color/black"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toEndOf="@+id/eggGameGOT"
+        app:layout_constraintTop_toBottomOf="@+id/image7"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <ImageView
+        android:background="@drawable/gradient_background_game2"
+        android:id="@+id/image8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/chicken_goh"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintTop_toBottomOf="@+id/text1"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <TextView
+        android:id="@+id/chickenGameGOH"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="10 phút"
+        android:textColor="@color/black"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toEndOf="@+id/slideGameGOT"
+        app:layout_constraintTop_toBottomOf="@+id/image8"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <ImageView
+        android:background="@drawable/gradient_background_game2"
+        android:id="@+id/image9"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/card_goh"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:layout_constraintTop_toBottomOf="@+id/text1"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <TextView
+        android:id="@+id/cardGameGOH"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="10 phút"
+        android:textColor="@color/black"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toEndOf="@+id/chickenGameGOT"
+        app:layout_constraintTop_toBottomOf="@+id/image9"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <ImageView
+        android:background="@drawable/gradient_background_game2"
+        android:id="@+id/image10"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/gold_island_goh"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/imageView9"
+        app:layout_constraintTop_toBottomOf="@+id/text1"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <TextView
+        android:id="@+id/goldIslandGameGOH"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="10 phút"
+        android:textColor="@color/black"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toEndOf="@+id/cardGameGOT"
+        app:layout_constraintTop_toBottomOf="@+id/image10"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <ImageView
+        android:background="@drawable/gradient_background_game2"
+        android:id="@+id/image11"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/toy_goh"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/imageView10"
+        app:layout_constraintTop_toBottomOf="@+id/text1"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <TextView
+        android:id="@+id/toyGameGOH"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="10 phút"
+        android:textColor="@color/black"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toEndOf="@+id/goldIslandGameGOT"
+        app:layout_constraintTop_toBottomOf="@+id/image11"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <ImageView
+        android:background="@drawable/gradient_background_game2"
+        android:id="@+id/image12"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/mushroom_goh"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/imageView11"
+        app:layout_constraintTop_toBottomOf="@+id/text1"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <TextView
+        android:id="@+id/mushroomGameGOH"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="10 phút"
+        android:textColor="@color/black"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toEndOf="@+id/toyGameGOT"
+        app:layout_constraintTop_toBottomOf="@+id/image12"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <ImageView
+        android:background="@drawable/gradient_background_game2"
+        android:id="@+id/image13"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/bee_goh"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintStart_toEndOf="@+id/imageView12"
+        app:layout_constraintTop_toBottomOf="@+id/text1"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <TextView
+        android:id="@+id/beeGameGOH"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="10 phút"
+        android:textColor="@color/black"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toEndOf="@+id/mushroomGameGOT"
+        app:layout_constraintTop_toBottomOf="@+id/image13"
+        app:layout_constraintWidth_percent="0.09" />
+
+    <TextView
+        android:layout_marginTop="16dp"
+        android:id="@+id/text3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:autoSizeTextType="uniform"
+        android:paddingLeft="16dp"
+        android:text="Chiến thần đỏ đen🎰"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fishGameGOH"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifImageView5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="36dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/dice_roll_gif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text3"
+        app:layout_constraintVertical_bias="0.36"
+        app:layout_constraintWidth_percent="0.15" />
+
+    <TextView
+        android:id="@+id/text5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:paddingLeft="16dp"
+        android:text="Số xúc xắc đã tung"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintHorizontal_bias="0.024"
+        app:layout_constraintStart_toEndOf="@+id/gifImageView5"
+        app:layout_constraintTop_toBottomOf="@+id/text3"
+        app:layout_constraintVertical_bias="0.093"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <TextView
+        android:background="@drawable/gradient_card_game"
+        android:id="@+id/diceRollNumTxt"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:paddingLeft="16dp"
+        android:text="1111"
+        android:textColor="#F44336"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.14"
+        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintStart_toEndOf="@+id/gifImageView5"
+        app:layout_constraintTop_toBottomOf="@+id/text5"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent="0.25" />
+</androidx.constraintlayout.widget.ConstraintLayout>

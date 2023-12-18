@@ -19,8 +19,8 @@ public class Chicken_game_control extends AppCompatActivity {
     SoundControl soundControl = new SoundControl();
     int id_values[]={R.drawable.chick_1,R.drawable.chick_2,R.drawable.chick_3,R.drawable.chick_4,R.drawable.chick_5,R.drawable.chick_6,R.drawable.chick_7,R.drawable.chick_8,R.drawable.chick_9,R.drawable.chick_10};
     int math_values[]={3,7,2,9,6,5,7,3,0,1,7,9,1,2,8,5,4,8,6,4,0};
-    String maths[] ={"","5-2","4+3","3-1","6+3","8-2","6-1","7-0","6-3","3-3","10-9","6+1","5+4","7-6","2-0","6+2","9-4","1+3","3+5","6-0","7-3","8-8"};
-    public void setString(TextView showT, int move, ImageButton imgs[], int previousMove, Activity main, Context context)
+    String  maths[] ={"","5-2","4+3","3-1","6+3","8-2","6-1","7-0","6-3","3-3","10-9","6+1","5+4","7-6","2-0","6+2","9-4","1+3","3+5","6-0","7-3","8-8"};
+    public void setString (TextView showT, int move, ImageButton imgs[], int previousMove, Activity main, Context context)
     {
         //animation set
         Animation animation = AnimationUtils.loadAnimation(context, R.anim.mario_up_top);
