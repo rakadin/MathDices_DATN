@@ -351,12 +351,6 @@ public class Game1MainActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(Game1MainActivity.this, MainActivity.class);
                 startActivity(intent);
-                soundControl.popSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        mediaPlayer.release();
-                    }
-                });
             }
         });
         imageSwitcher.setImageResource(ImageSwitcherImages[switcherImageLength-1]);
@@ -366,17 +360,19 @@ public class Game1MainActivity extends AppCompatActivity {
     }
     // if eggs get ==6 -> open winning activity
     protected  void winAcOpen(){
+
         Utils.delay(60, () -> { // wait untill gif done and countEgg++
             if(gameplayGame1.countEggs == 6)
             {
+                gif_popUp_controller.show_egg_dancing(dialog);
                 Calendar target = Calendar.getInstance();
                 ArchivementController controller = new ArchivementController();
                 ShPrefEnum shPrefEnum = new ShPrefEnum();
                 controller.setNewTimeValueGOT(start,target,this, shPrefEnum.eggGameGOT);
                 controller.setNewGOH(shPrefEnum.eggGameGOH, this);
-
                 soundControl.hooraySoundFun(Game1MainActivity.this);
                 Utils.delay(50, () -> {
+                    dialog.dismiss();
                     Intent intent = new Intent();
                     intent.setClass(Game1MainActivity.this, Winningactivity.class);
                     startActivity(intent);
@@ -393,19 +389,19 @@ public class Game1MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        soundControl.player.stop();
+        soundControl.releaseAllSound();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
         start = Calendar.getInstance();
-        soundControl.player.start();
+        soundControl.OnOffFun(Game1MainActivity.this,onoffBut);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        soundControl.player.stop();
+        soundControl.releaseAllSound();
     }
 }

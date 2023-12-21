@@ -42,12 +42,6 @@ public class Chicken_game_control extends AppCompatActivity {
             }
             imgs[previousMove].setImageResource(0);
             showT.setText(""+maths[move]);
-            soundControl.run.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    mediaPlayer.release();
-                }
-            });
         }
        else
         {
@@ -63,12 +57,6 @@ public class Chicken_game_control extends AppCompatActivity {
             }
             imgs[previousMove].setImageResource(0);
             showT.setText(""+maths[move]);
-            soundControl.run.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    mediaPlayer.release();
-                }
-            });
         }
     }
     public void checkAns(Context context, int temi, int chick_value, Activity main, ImageButton imgBut, ImageView gets[],int i)
@@ -85,24 +73,12 @@ public class Chicken_game_control extends AppCompatActivity {
                 soundControl.correctSoundFun(main);
                 imgBut.startAnimation(animation);
                 Toast.makeText(context,"Đúng rồi !!!",Toast.LENGTH_LONG).show();
-                soundControl.correct.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        mediaPlayer.release();
-                    }
-                });
             }
             else
             {
                 soundControl.wrongSoundFun(main);
                 imgBut.startAnimation(animation2);
                 Toast.makeText(context,"Sai rồi !!!",Toast.LENGTH_LONG).show();
-                soundControl.wrong.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        mediaPlayer.release();
-                    }
-                });
             }
         }
     }

@@ -22,12 +22,6 @@ public class RollDiceController {
         }
         controller.setNewDiceRollCount(1,context);//add to shrPref
         soundControl.RollSoundFun(context);
-        soundControl.rollSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                mediaPlayer.release();
-            }
-        });
         Utils.delay(30, () -> {
             dialog.dismiss();
             diceBut.setImageResource(images[diceNumFinal-1]);
@@ -45,12 +39,6 @@ public class RollDiceController {
         }
         controller.setNewDiceRollCount(1,context);//add to shrPref
         soundControl.RollSoundFun(context);
-        soundControl.rollSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {
-                mediaPlayer.release();
-            }
-        });
         int finalTemDiceNum = temDiceNum;
         Utils.delay(30, () -> {
             dialog.dismiss();

@@ -27,17 +27,16 @@ public class Winning_activity_toy_machine extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                soundControl.PopSoundFun(Winningactivity.this,);
-                soundControl.PopSoundFun2(Winning_activity_toy_machine.this,replayBut);
+                soundControl.PopSoundFun2(Winning_activity_toy_machine.this);
                 Intent intent = new Intent();
                 intent.setClass(Winning_activity_toy_machine.this, Toy_Machine_Activity.class);
                 startActivity(intent);
-//                soundControl.player.pause();
             }
         });
         menuBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                soundControl.PopSoundFun2(Winning_activity_toy_machine.this,replayBut);
+                soundControl.PopSoundFun2(Winning_activity_toy_machine.this);
                 Intent intent = new Intent();
                 intent.setClass(Winning_activity_toy_machine.this, Part2_Homepage_Activity.class);
                 startActivity(intent);
@@ -47,11 +46,11 @@ public class Winning_activity_toy_machine extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        soundControl.win.release();
+        soundControl.releaseAllSound();
     }
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        soundControl.win.release();
+        soundControl.releaseAllSound();
     }
 }

@@ -69,7 +69,6 @@ public class Mushroom_Activity extends AppCompatActivity {
                         soundControl.pianoSoundFunc(view.getContext());
                         gif_popUp_controller.show_mushroom_picker(dialog);
                         Utils.delay(40, () -> {
-                            soundControl.fall.release();
                             dialog.dismiss();
                             checkAns(tem, moves, view.getContext());
                         });
@@ -169,24 +168,20 @@ public class Mushroom_Activity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        soundBut.setImageResource(sound_on);
         start = Calendar.getInstance();
-        soundControl.player.start();
+        soundControl.OnOffFun(Mushroom_Activity.this, soundBut);
     }
 
     // if destroy stop music
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (soundControl.player != null) {
-            soundControl.player.stop();
-        }
+        soundControl.releaseAllSound();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        soundControl.player.stop();
-        soundControl.player.release();
+        soundControl.releaseAllSound();
     }
 }

@@ -39,23 +39,18 @@ public class Bee_Home_rule extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        soundBut.setImageResource(sound_on);
-        soundControl.player.start();
+        soundControl.OnOffFun(Bee_Home_rule.this,soundBut);
     }
     // if destroy stop music
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(soundControl.player != null)
-        {
-            soundControl.player.stop();
-        }
+        soundControl.releaseAllSound();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        soundControl.player.stop();
-        soundControl.player.release();
+        soundControl.releaseAllSound();
     }
 }

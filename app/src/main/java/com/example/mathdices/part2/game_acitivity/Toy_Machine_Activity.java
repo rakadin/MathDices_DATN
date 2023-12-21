@@ -100,7 +100,6 @@ public class Toy_Machine_Activity extends AppCompatActivity {
                         gif_popUp_controller.show_claw_machine(dialog);
                         Utils.delay(60, () -> {
                             dialog.dismiss();
-                            soundControl.fall.release();
                             boolean tem = controller.checkAns(ans,temi);
                             if(tem == true)
                             {
@@ -185,24 +184,19 @@ public class Toy_Machine_Activity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        soundBut.setImageResource(sound_on);
         start = Calendar.getInstance();
-        soundControl.player.start();
+        soundControl.OnOffFun(Toy_Machine_Activity.this,soundBut);
     }
     // if destroy stop music
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(soundControl.player != null)
-        {
-            soundControl.player.stop();
-        }
+        soundControl.releaseAllSound();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        soundControl.player.stop();
-        soundControl.player.release();
+        soundControl.releaseAllSound();
     }
 }

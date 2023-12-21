@@ -30,7 +30,6 @@ public class Toy_Machine_rule extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                soundControl.player.release();
                 intent.setClass(view.getContext(), Toy_Machine_Activity.class);
                 startActivity(intent);
             }
@@ -40,19 +39,18 @@ public class Toy_Machine_rule extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        soundBut.setImageResource(sound_on);
-        soundControl.player.start();
+        soundControl.OnOffFun(this,soundBut);
     }
     // if destroy stop music
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        soundControl.player.release();
+        soundControl.releaseAllSound();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        soundControl.player.release();
+        soundControl.releaseAllSound();
     }
 }
