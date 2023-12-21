@@ -153,21 +153,9 @@ public class Fishing_game_main extends AppCompatActivity {
                                 });
 
                             }
-                            soundControl.correct.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                                @Override
-                                public void onCompletion(MediaPlayer mediaPlayer) {
-                                    mediaPlayer.release();
-                                }
-                            });
                         } else {
                             Toast.makeText(view.getContext(), "Sai rồi!!!", Toast.LENGTH_SHORT).show();
                             soundControl.wrongSoundFun(Fishing_game_main.this);
-                            soundControl.wrong.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                                @Override
-                                public void onCompletion(MediaPlayer mediaPlayer) {
-                                    mediaPlayer.release();
-                                }
-                            });
                         }
                     });
                 }
@@ -203,19 +191,19 @@ public class Fishing_game_main extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        soundControl.player.stop();
+        soundControl.releaseAllSound();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
         start = Calendar.getInstance();
-        soundControl.player.start();
+        soundControl.OnOffFun(Fishing_game_main.this, onoffBut);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        soundControl.player.stop();
+        soundControl.releaseAllSound();
     }
 }

@@ -100,6 +100,27 @@
         app:layout_constraintWidth_percent="0.15"
         tools:ignore="HardcodedText" />
 
+    <TextView
+        android:id="@+id/textTop3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="Mặt này->"
+        android:textColor="#675555"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/dice"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.594"
+        app:layout_constraintWidth_percent="0.15"
+        tools:ignore="HardcodedText" />
+
     <ImageButton
         android:id="@+id/dice"
         android:layout_width="0dp"

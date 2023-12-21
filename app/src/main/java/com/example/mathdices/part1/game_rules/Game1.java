@@ -31,17 +31,10 @@ public class Game1 extends AppCompatActivity {
         game1But.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                soundControl.PopSoundFun2(Game1.this,game1But);
+                soundControl.PopSoundFun2(Game1.this);
                 Intent intent = new Intent();
                 intent.setClass(Game1.this, Game1MainActivity.class);
                 startActivity(intent);
-                soundControl.player.pause();
-                soundControl.popSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        mediaPlayer.release();
-                    }
-                });
             }
         });
     }
@@ -49,18 +42,18 @@ public class Game1 extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        soundControl.player.stop();
+        soundControl.releaseAllSound();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        soundControl.player.start();
+        soundControl.OnOffFun(Game1.this,onoffBut);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        soundControl.player.release();
+        soundControl.releaseAllSound();
     }
 }

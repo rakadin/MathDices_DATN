@@ -27,30 +27,28 @@ public class Card_game_introduction extends AppCompatActivity {
         game1But.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                soundControl.PopSoundFun2(Card_game_introduction.this,game1But);
+                soundControl.PopSoundFun2(Card_game_introduction.this);
                 Intent intent = new Intent();
                 intent.setClass(Card_game_introduction.this , Card_game_main.class);
                 startActivity(intent);
-                soundControl.player.pause();
             }
         });
     }
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        soundControl.player.release();
+        soundControl.releaseAllSound();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        soundControl.player.start();
+        soundControl.OnOffFun(Card_game_introduction.this,onoffBut);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        soundControl.player.stop();
-        soundControl.player.release();
+        soundControl.releaseAllSound();
     }
 }

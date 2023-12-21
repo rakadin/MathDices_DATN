@@ -115,23 +115,18 @@ public class Part2_Homepage_Activity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        soundbut.setImageResource(sound_on);
-        soundControl.player.start();
+        soundControl.OnOffFun(this,soundbut);
     }
     // if destroy stop music
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(soundControl.player != null)
-        {
-            soundControl.player.stop();
-        }
+        soundControl.releaseAllSound();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        soundControl.player.stop();
-        soundControl.player.release();
+        soundControl.releaseAllSound();
     }
 }

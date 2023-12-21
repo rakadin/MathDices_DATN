@@ -27,30 +27,28 @@ public class Fishing_introduction extends AppCompatActivity {
         game1But.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                soundControl.PopSoundFun2(Fishing_introduction.this,game1But);
+                soundControl.PopSoundFun2(Fishing_introduction.this);
                 Intent intent = new Intent();
                 intent.setClass(Fishing_introduction.this , Fishing_game_main.class);
                 startActivity(intent);
-                soundControl.player.pause();
             }
         });
     }
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        soundControl.player.release();
+        soundControl.releaseAllSound();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        soundControl.player.start();
+        soundControl.OnOffFun(Fishing_introduction.this,onoffBut);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        soundControl.player.stop();
-        soundControl.player.release();
+        soundControl.releaseAllSound();
     }
 }

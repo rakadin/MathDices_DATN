@@ -31,11 +31,9 @@ public class MainActivity extends AppCompatActivity {
     ImageButton game3But;
     ImageButton game4But;
     ImageButton game5But,bookBut, archivementBut;
-   public boolean vali = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        soundControl.vali = true;
         setContentView(R.layout.activity_main);
         onoffBut = findViewById(R.id.book1_sOnOffBut);
         game1But = findViewById(R.id.eggcatch);
@@ -62,13 +60,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, Game1.class);
                 startActivity(intent);
-                soundControl.player.pause();
-                soundControl.popSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        mediaPlayer.release();
-                    }
-                });
             }
         });
         game2But.setOnClickListener(new View.OnClickListener() {
@@ -78,13 +69,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, Slide_introduction.class);
                 startActivity(intent);
-                soundControl.player.pause();
-                soundControl.popSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        mediaPlayer.release();
-                    }
-                });
             }
         });
         game3But.setOnClickListener(new View.OnClickListener() {
@@ -94,13 +78,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, Fishing_introduction.class);
                 startActivity(intent);
-                soundControl.player.pause();
-                soundControl.popSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        mediaPlayer.release();
-                    }
-                });
             }
         });
         game4But.setOnClickListener(new View.OnClickListener() {
@@ -110,13 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, Card_game_introduction.class);
                 startActivity(intent);
-                soundControl.player.pause();
-                soundControl.popSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        mediaPlayer.release();
-                    }
-                });
             }
         });
         game5But.setOnClickListener(new View.OnClickListener() {
@@ -126,13 +96,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, Chicken_game_introduction.class);
                 startActivity(intent);
-                soundControl.player.pause();
-                soundControl.popSound.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mediaPlayer) {
-                        mediaPlayer.release();
-                    }
-                });
             }
         });
         soundControl.OnOffFun(MainActivity.this,onoffBut);
@@ -152,24 +115,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        onoffBut.setImageResource(sound_on);
-        vali = true;
-        soundControl.player.start();
+        soundControl.OnOffFun(MainActivity.this,onoffBut);
     }
 // if destroy stop music
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(soundControl.player != null)
-        {
-            soundControl.player.stop();
-        }
+        soundControl.releaseAllSound();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        soundControl.player.stop();
-        soundControl.player.release();
+        soundControl.releaseAllSound();
     }
 }

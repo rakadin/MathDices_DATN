@@ -106,12 +106,6 @@ public class Card_game_main extends AppCompatActivity {
                             {
                                 CARDS[tem].startAnimation(animation);
                                 soundControl.correctSoundFun(Card_game_main.this);
-                                soundControl.correct.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                                    @Override
-                                    public void onCompletion(MediaPlayer mediaPlayer) {
-                                        mediaPlayer.release();
-                                    }
-                                });
                                 // controll yellow and blue card to flip back
                                 if (tem % 2 == 0) {
                                     CARDS[tem].setImageResource(R.drawable.yellow_card_back);
@@ -146,12 +140,6 @@ public class Card_game_main extends AppCompatActivity {
                                 CARDS[tem].startAnimation(animation2);
                                 soundControl.wrongSoundFun(Card_game_main.this);
                                 Toast.makeText(Card_game_main.this,"Sai rồi !!!",Toast.LENGTH_LONG).show();
-                                soundControl.wrong.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                                    @Override
-                                    public void onCompletion(MediaPlayer mediaPlayer) {
-                                        mediaPlayer.release();
-                                    }
-                                });
                             }
                         });
                     }
@@ -175,19 +163,19 @@ public class Card_game_main extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        soundControl.player.stop();
+        soundControl.releaseAllSound();
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
         start = Calendar.getInstance();
-        soundControl.player.start();
+        soundControl.OnOffFun(Card_game_main.this,onoffBut);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        soundControl.player.stop();
+        soundControl.releaseAllSound();
     }
 }

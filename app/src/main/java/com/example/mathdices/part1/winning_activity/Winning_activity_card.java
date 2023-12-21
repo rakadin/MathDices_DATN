@@ -26,18 +26,16 @@ public class Winning_activity_card extends AppCompatActivity {
         replayBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                soundControl.PopSoundFun(Winningactivity.this,);
-                soundControl.PopSoundFun2(Winning_activity_card.this,replayBut);
+                soundControl.PopSoundFun2(Winning_activity_card.this);
                 Intent intent = new Intent();
                 intent.setClass(Winning_activity_card.this, Card_game_main.class);
                 startActivity(intent);
-//                soundControl.player.pause();
             }
         });
         menuBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                soundControl.PopSoundFun2(Winning_activity_card.this,replayBut);
+                soundControl.PopSoundFun2(Winning_activity_card.this);
                 Intent intent = new Intent();
                 intent.setClass(Winning_activity_card.this, MainActivity.class);
                 startActivity(intent);
@@ -47,11 +45,11 @@ public class Winning_activity_card extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        soundControl.win.stop();
+        soundControl.releaseAllSound();
     }
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        soundControl.win.release();
+        soundControl.releaseAllSound();
     }
 }

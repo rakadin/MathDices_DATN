@@ -33,8 +33,7 @@
         android:layout_marginStart="75dp"
         android:layout_marginEnd="75dp"
         android:autoSizeTextType="uniform"
-        android:text="- Chơi theo nhóm.
-\n- Khi đến lượt, người chơi gieo xúc xắc. Đếm số chấm nhận được ở mặt trên xúc xắc rồi chọn nút 'Nhập phép tính' để hiển thị phép tính. Tính kết quả của phép tính hiển thị trên màn hình. Lấy các đồ chơi ghi số bằng kết quả phép tính đó.
+        android:text="- Khi đến lượt, người chơi gieo xúc xắc. Đếm số chấm nhận được ở mặt trên xúc xắc rồi chọn nút 'Nhập phép tính' để hiển thị phép tính. Tính kết quả của phép tính hiển thị trên màn hình. Lấy các đồ chơi ghi số bằng kết quả phép tính đó.
 \n- Trò chơi kết thúc khi lấy được 6 đồ chơi"
         android:padding="7dp"
         android:textColor="@color/black"

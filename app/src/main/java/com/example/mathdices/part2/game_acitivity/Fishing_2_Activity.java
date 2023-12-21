@@ -96,7 +96,8 @@ public class Fishing_2_Activity extends AppCompatActivity {
             soundControl.fishingSoundFunc(context);
             gif_popUp_controller.show_f_penguin(dialog);
             Utils.delay(75, () -> {
-                soundControl.fall.release();
+                soundControl.stopShipSailingSound();
+                Toast.makeText(context,"Đúng rồi!!!",Toast.LENGTH_SHORT).show();
                 soundControl.hooraySoundFun2(context);
                 gif_popUp_controller.show_yes_penguin(dialog);
             });
@@ -125,7 +126,8 @@ public class Fishing_2_Activity extends AppCompatActivity {
             soundControl.fishingSoundFunc(context);
             gif_popUp_controller.show_f_penguin(dialog);
             Utils.delay(75, () -> {
-                soundControl.fall.release();
+                Toast.makeText(context,"Sai rồi!!!",Toast.LENGTH_SHORT).show();
+                soundControl.stopShipSailingSound();
                 soundControl.wrongSoundFun2(context);
                 gif_popUp_controller.show_no_penguin(dialog);
             });
@@ -229,24 +231,20 @@ public class Fishing_2_Activity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        soundBut.setImageResource(sound_on);
         start = Calendar.getInstance();
-        soundControl.player.start();
+        soundControl.OnOffFun(Fishing_2_Activity.this,soundBut);
     }
     // if destroy stop music
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(soundControl.player != null)
-        {
-            soundControl.player.stop();
-        }
+        soundControl.releaseAllSound();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        soundControl.player.stop();
-        soundControl.player.release();
+        soundControl.releaseAllSound();
+
     }
 }

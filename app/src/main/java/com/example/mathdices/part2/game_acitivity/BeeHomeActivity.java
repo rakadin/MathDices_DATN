@@ -91,7 +91,6 @@ public class BeeHomeActivity extends AppCompatActivity {
                         gif_popUp_controller.show_bee_yeah(dialog);
                         Utils.delay(50, () -> {
                             Boolean flag = false;
-                            soundControl.fall.release();
                             dialog.dismiss();
                             clocks[now_loc-1].setImageResource(R.drawable.bee_gif);
                             controller.getIMG(now_loc-1,clock_now);
@@ -204,24 +203,19 @@ public class BeeHomeActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        soundBut.setImageResource(sound_on);
         start = Calendar.getInstance();
-        soundControl.player.start();
+        soundControl.OnOffFun(this,soundBut);
     }
     // if destroy stop music
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(soundControl.player != null)
-        {
-            soundControl.player.stop();
-        }
+        soundControl.releaseAllSound();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        soundControl.player.stop();
-        soundControl.player.release();
+        soundControl.releaseAllSound();
     }
 }

@@ -34,7 +34,6 @@ public class GoldIslandActivity extends AppCompatActivity {
     private SoundControl soundControl = new SoundControl();
     private RollDiceController rollDiceController = new RollDiceController();
     private ImageButton soundBut,homeBut,diceBut;
-    private GifImageView ship_gif,chest_gif;
     private TextView num_now;
     private Dialog dialog ;
     private Gif_PopUp_Controller gif_popUp_controller = new Gif_PopUp_Controller();// call controller
@@ -59,8 +58,6 @@ public class GoldIslandActivity extends AppCompatActivity {
         diceBut = findViewById(R.id.dice);
         moveBut = findViewById(R.id.moveBut);
         num_now = findViewById(R.id.num_now);
-        ship_gif = findViewById(R.id.ship_sailing);
-        chest_gif = findViewById(R.id.chest_open);
         getShipBut();
         Button multiShip[] ={loc_1,loc_2,loc_3,loc_4,loc_5,loc_6,loc_7,loc_8,loc_9,loc_10,loc_11,loc_12,loc_13,loc_14,loc_15,loc_16,loc_17,loc_18,loc_19,loc_20,
                 loc_21,loc_22,loc_23,loc_24,loc_25,loc_26,loc_27,loc_28,loc_29,loc_30,
@@ -153,7 +150,6 @@ public class GoldIslandActivity extends AppCompatActivity {
                             gif_popUp_controller.show_ship_sailing(dialog);
                             Boolean finalFlag = flag;
                             Utils.delay(55, () -> {
-                                soundControl.fall.release();
                                 if(now_loc <39)
                                 { // dismiss dialog after few secs when location <39
                                     dialog.dismiss();
@@ -166,12 +162,14 @@ public class GoldIslandActivity extends AppCompatActivity {
                                     moveBut.setClickable(false);
                                     // handle if ship go into specific case, wait till animation complete
                                     Utils.delay(75, () -> {
+                                        soundControl.stopShipSailingSound();
                                         diceBut.setClickable(true);// wait till animation complete
                                         moveBut.setClickable(true);
                                         Dialog dialog2 = new Dialog(view.getContext());
                                         goldIsland_controller.showQuestion(dialog2,now_loc+1);
                                     });
                                 } else {
+                                    soundControl.stopShipSailingSound();
                                     Dialog dialog2 = new Dialog(view.getContext());
                                     goldIsland_controller.showQuestion(dialog2,now_loc+1);
                                 }
@@ -262,24 +260,19 @@ public class GoldIslandActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        soundBut.setImageResource(sound_on);
         start = Calendar.getInstance();
-        soundControl.player.start();
+        soundControl.OnOffFun(this,soundBut);
     }
     // if destroy stop music
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(soundControl.player != null)
-        {
-            soundControl.player.stop();
-        }
+        soundControl.releaseAllSound();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        soundControl.player.stop();
-        soundControl.player.release();
+        soundControl.releaseAllSound();
     }
 }

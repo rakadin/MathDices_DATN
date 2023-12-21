@@ -38,13 +38,13 @@ public class Choose_part_activity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        soundControl.player.release();
+        soundControl.releaseAllSound();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        soundControl.player.release();
+        soundControl.releaseAllSound();
     }
     private void activateMagicBookGif(Dialog dialog, Intent intent){
         Gif_PopUp_Controller gif_popUp_controller = new Gif_PopUp_Controller();
